@@ -1,0 +1,109 @@
+# index.html 이나 version.json 을 올리거나(main 브랜치) Actions 탭에서 직접 실행하면
+# 안드로이드 앱(apk)을 만들어 아래 세 곳에 올립니다.
+#   1) 저장소 releases/Attendance_Management_Software_v{버전}.apk
+#   2) 릴리스 v{버전}       (버전별 보관)
+#   3) 릴리스 app-latest    (ams-latest.apk — 앱 안의 「다운로드 QR › 안드로이드 앱」이 가리키는 주소)
+# 서명은 android-keystore/ams-debug.keystore 를 계속 써서, 새 버전을 지우지 않고 덮어 설치할 수 있습니다.
+# Produced by RatRae Choi
+name: Android APK
+
+on:
+  push:
+    branches: [main]
+    paths: [index.html, version.json, icons/**, capacitor.config.json, package.json, .github/workflows/android-apk.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: 버전 읽기
+        id: ver
+        run: |
+          V=$(jq -r .version version.json)
+          echo "v=$V" >> "$GITHUB_OUTPUT"
+          IFS=. read -r MA MI PA <<< "$V"
+          echo "code=$((MA*10000 + MI*100 + PA))" >> "$GITHUB_OUTPUT"
+          echo "APK 버전 $V"
+
+      - name: 웹 파일 준비
+        run: |
+          npm install
+          npm run www
+
+      - name: 안드로이드 프로젝트 만들기
+        run: |
+          npx cap add android
+          mkdir -p assets && cp icons/app-icon-1024.png assets/icon-only.png && cp icons/app-icon-1024.png assets/icon-foreground.png
+          printf '<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024"><rect width="1024" height="1024" fill="#0b1757"/></svg>' > assets/icon-background.svg
+          npx capacitor-assets generate --android --iconBackgroundColor '#0b1757' --splashBackgroundColor '#0b1757' || true
+          npx cap sync android
+
+      - name: 버전·위치 권한(GPS) 넣기
+        run: |
+          G=android/app/build.gradle
+          sed -i "s/versionCode [0-9]*/versionCode ${{ steps.ver.outputs.code }}/; s/versionName \"[^\"]*\"/versionName \"${{ steps.ver.outputs.v }}\"/" "$G"
+          grep -n "version" "$G"
+          M=android/app/src/main/AndroidManifest.xml
+          grep -q ACCESS_FINE_LOCATION "$M" || sed -i 's#<uses-permission android:name="android.permission.INTERNET" />#<uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\n    <uses-feature android:name="android.hardware.location.gps" android:required="false" />#' "$M"
+          grep -n LOCATION "$M"
+
+      - name: apk 빌드 (고정 서명)
+        working-directory: android
+        run: |
+          mkdir -p ~/.android && cp ../android-keystore/ams-debug.keystore ~/.android/debug.keystore
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+          V=${{ steps.ver.outputs.v }}
+          mkdir -p ../releases
+          cp app/build/outputs/apk/debug/app-debug.apk "../releases/Attendance_Management_Software_v$V.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk ../ams-latest.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Attendance_Management_Software_v${{ steps.ver.outputs.v }}
+          path: releases/Attendance_Management_Software_v${{ steps.ver.outputs.v }}.apk
+
+      - name: 저장소 releases 폴더에 apk 올리기
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "releases/Attendance_Management_Software_v${{ steps.ver.outputs.v }}.apk"
+          git commit -m "APK v${{ steps.ver.outputs.v }} 빌드 [skip ci]" || echo "변경 없음"
+          git pull --rebase origin main && git push origin HEAD:main
+
+      - name: 버전 릴리스 (v${{ steps.ver.outputs.v }})
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.ver.outputs.v }}
+          name: Attendance Management Software v${{ steps.ver.outputs.v }}
+          body: 안드로이드 앱 Attendance_Management_Software_v${{ steps.ver.outputs.v }}.apk 와 웹 버전 HTML 입니다. 「출처를 알 수 없는 앱 설치」를 허용하고 설치하세요.
+          files: |
+            releases/Attendance_Management_Software_v${{ steps.ver.outputs.v }}.apk
+            releases/Attendance_Management_Software_v${{ steps.ver.outputs.v }}.html
+          make_latest: false
+
+      - name: 최신판 릴리스 (QR 다운로드 주소)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: app-latest
+          name: 근태관리 안드로이드 앱 (최신)
+          body: 휴대폰에서 ams-latest.apk 를 내려받아 설치하세요. 현재 버전 v${{ steps.ver.outputs.v }}. 「출처를 알 수 없는 앱」 안내가 나오면 이 출처 허용을 켜고 다시 설치합니다.
+          files: |
+            ams-latest.apk
+            releases/Attendance_Management_Software_v${{ steps.ver.outputs.v }}.apk
+          make_latest: true

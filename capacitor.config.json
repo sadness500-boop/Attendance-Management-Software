@@ -1,0 +1,10 @@
+{
+  "appId": "kr.stecbest.ams",
+  "appName": "Attendance Management Software",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "hostname": "sadness500-boop.github.io"
+  },
+  "android": { "allowMixedContent": false }
+}

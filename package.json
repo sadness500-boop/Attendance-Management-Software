@@ -1,0 +1,19 @@
+{
+  "name": "attendance-management-software",
+  "version": "1.2.0",
+  "private": true,
+  "description": "에스텍베스트 근태관리 프로그램 — 안드로이드·아이폰 앱 포장(Capacitor). Produced by RatRae Choi",
+  "scripts": {
+    "www": "rm -rf www && mkdir -p www && cp index.html manifest.webmanifest www/ && cp -r icons www/"
+  },
+  "dependencies": {
+    "@capacitor/android": "6.2.0",
+    "@capacitor/browser": "6.0.5",
+    "@capacitor/core": "6.2.0",
+    "@capacitor/ios": "6.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "3.0.5",
+    "@capacitor/cli": "6.2.0"
+  }
+}
