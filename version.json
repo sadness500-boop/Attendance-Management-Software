@@ -1,7 +1,7 @@
 {
-  "version": "1.6.0",
-  "date": "2026-10-30",
-  "note": "메인화면 그림 전체 표시·로고 메인 이동, 업종 카드 축소, 조직 표기·정렬 정리, 단위 명칭 직접 입력",
-  "html": "releases/Attendance_Management_Software_v1.6.0.html",
-  "apk": "releases/Attendance_Management_Software_v1.6.0.apk"
+  "version": "1.7.0",
+  "date": "2026-10-31",
+  "note": "성명 칸 근무 설정(출·퇴근·휴게·일반/감시단속), 사업장 인원 추가·감원, 엑셀(.xlsx) 출력, 근로형태·휴게·심야·연차 8h 반영 시간가감 환산",
+  "html": "releases/Attendance_Management_Software_v1.7.0.html",
+  "apk": "releases/Attendance_Management_Software_v1.7.0.apk"
 }
