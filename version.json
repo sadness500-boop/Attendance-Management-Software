@@ -1,7 +1,7 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "date": "2026-10-30",
-  "note": "글자 크기·가독성 개선, 메인화면 지사별 관리",
-  "html": "releases/Attendance_Management_Software_v1.4.0.html",
-  "apk": "releases/Attendance_Management_Software_v1.4.0.apk"
+  "note": "회사·조직 만들기, 근태 담당자 여러 명(독립·통합 관리)",
+  "html": "releases/Attendance_Management_Software_v1.5.0.html",
+  "apk": "releases/Attendance_Management_Software_v1.5.0.apk"
 }
