@@ -1,6 +1,6 @@
 # Attendance Management Software
 
-**에스텍베스트 근태관리 프로그램** · v1.5.0
+**에스텍베스트 근태관리 프로그램** · v1.6.0
 
 에스텍베스트 전 지사(동부·서부·남부·중부) 사업장의 근태를 관리합니다. 근무조 코드를 개인에게 한 번 부여하면 2026년 1월부터 매월 1일~말일 근태가 코드대로 자동 생성되는 근태관리 프로그램입니다. 웹 버전과 안드로이드 앱(APK)으로 씁니다.
 
@@ -9,9 +9,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/attendance-management-software/ |
-| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v1.5.0.html](releases/Attendance_Management_Software_v1.5.0.html) | |
+| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v1.6.0.html](releases/Attendance_Management_Software_v1.6.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/attendance-management-software/releases/download/app-latest/ams-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v1.5.0.apk` | 릴리스 `v1.5.0` |
+| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v1.6.0.apk` | 릴리스 `v1.6.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -46,6 +46,7 @@
 
 ## 변경 이력
 
+- **v1.6.0** (2026-10-30) — 상단 로고·메인 대표 그림을 자르지 않고 전체 표시, 로고를 누르면 메인화면, 업종 카드 크기 축소, 조직 이름 앞 구분 표기 중복 제거(지사 동부지사 → 동부지사), 사업장 가나다 순 정렬, 조직 집계는 실제 있는 단위만 표시(에스텍베스트는 지사 단위, 동부지사 권역 정리), 새 회사·새 조직 만들기에서 단위 명칭(회사·그룹·본사·사업부·본부·지역본부·지사·지점·영업소·사무소·센터·권역·지역·팀·파트·현장)을 고르거나 직접 입력
 - **v1.5.0** (2026-10-30) — 회사·본부·지사·지점·권역·팀 조직을 직접 만들고 수정(새 회사 만들기, 하위 조직 추가), 근태 담당자 여러 명 등록·전환(선택 PIN), 담당 조직별 독립 관리와 상위 조직 담당자의 통합 관리, 메인 조직 탭이 담당 범위에 맞춰 단계별로 펼쳐짐
 - **v1.4.0** (2026-10-30) — 글자 크기 확대(본문 16px), 본문 글꼴 Noto Sans KR·대비 강화, 근태 원장 칸 확대, 메인화면 지사별 관리(회사 전체·동부·서부·남부·중부 선택 탭, 상단 "관리 지사" 선택, 근태 담당의 담당 지사로 시작), 선택한 지사로 집계·업종·사업장 현황·지도·월 집계·개인별 범위 연동
 - **v1.3.0** (2026-10-30) — 에스텍베스트 전 지사(동부·서부·남부·중부) 148개 사업장으로 확장(사업장 주소록 151곳 기준, 동부는 근태현황의 통합 사업장 유지), 업종별(보안·미화·주차·시설·기타) 피규어를 메인·사업장·지도·인원 화면에 반영, 상단 로고를 S-Tec 명판으로 교체, 메인 대표 이미지(근태관리 디오라마), 디자인 전면 개편(오로라 배경·글래스 패널·벤토 메인), 지사·업종 필터, 지사별 집계, 지도 업종별 색상, 공개판 성명 가림

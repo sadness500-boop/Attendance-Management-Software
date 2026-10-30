@@ -1,7 +1,7 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "date": "2026-10-30",
-  "note": "회사·조직 만들기, 근태 담당자 여러 명(독립·통합 관리)",
-  "html": "releases/Attendance_Management_Software_v1.5.0.html",
-  "apk": "releases/Attendance_Management_Software_v1.5.0.apk"
+  "note": "메인화면 그림 전체 표시·로고 메인 이동, 업종 카드 축소, 조직 표기·정렬 정리, 단위 명칭 직접 입력",
+  "html": "releases/Attendance_Management_Software_v1.6.0.html",
+  "apk": "releases/Attendance_Management_Software_v1.6.0.apk"
 }

@@ -1,6 +1,6 @@
 {
   "name": "attendance-management-software",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
   "description": "에스텍베스트 근태관리 프로그램 — 안드로이드·아이폰 앱 포장(Capacitor). Produced by RatRae Choi",
   "scripts": {
