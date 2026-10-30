@@ -1,7 +1,7 @@
 {
-  "version": "1.7.0",
+  "version": "1.8.0",
   "date": "2026-10-31",
-  "note": "성명 칸 근무 설정(출·퇴근·휴게·일반/감시단속), 사업장 인원 추가·감원, 엑셀(.xlsx) 출력, 근로형태·휴게·심야·연차 8h 반영 시간가감 환산",
-  "html": "releases/Attendance_Management_Software_v1.7.0.html",
-  "apk": "releases/Attendance_Management_Software_v1.7.0.apk"
+  "note": "회사·조직 통합 엑셀 출력(월집계·개인명부·근무조 코드·변경 근태 내역·사업장별 근태)",
+  "html": "releases/Attendance_Management_Software_v1.8.0.html",
+  "apk": "releases/Attendance_Management_Software_v1.8.0.apk"
 }
