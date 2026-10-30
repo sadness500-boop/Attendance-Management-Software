@@ -1,6 +1,6 @@
 # Attendance Management Software
 
-**에스텍베스트 근태관리 프로그램** · v1.3.0
+**에스텍베스트 근태관리 프로그램** · v1.4.0
 
 에스텍베스트 전 지사(동부·서부·남부·중부) 사업장의 근태를 관리합니다. 근무조 코드를 개인에게 한 번 부여하면 2026년 1월부터 매월 1일~말일 근태가 코드대로 자동 생성되는 근태관리 프로그램입니다. 웹 버전과 안드로이드 앱(APK)으로 씁니다.
 
@@ -9,9 +9,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/attendance-management-software/ |
-| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v1.3.0.html](releases/Attendance_Management_Software_v1.3.0.html) | |
+| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v1.4.0.html](releases/Attendance_Management_Software_v1.4.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/attendance-management-software/releases/download/app-latest/ams-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v1.3.0.apk` | 릴리스 `v1.3.0` |
+| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v1.4.0.apk` | 릴리스 `v1.4.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -46,6 +46,7 @@
 
 ## 변경 이력
 
+- **v1.4.0** (2026-10-30) — 글자 크기 확대(본문 16px), 본문 글꼴 Noto Sans KR·대비 강화, 근태 원장 칸 확대, 메인화면 지사별 관리(회사 전체·동부·서부·남부·중부 선택 탭, 상단 "관리 지사" 선택, 근태 담당의 담당 지사로 시작), 선택한 지사로 집계·업종·사업장 현황·지도·월 집계·개인별 범위 연동
 - **v1.3.0** (2026-10-30) — 에스텍베스트 전 지사(동부·서부·남부·중부) 148개 사업장으로 확장(사업장 주소록 151곳 기준, 동부는 근태현황의 통합 사업장 유지), 업종별(보안·미화·주차·시설·기타) 피규어를 메인·사업장·지도·인원 화면에 반영, 상단 로고를 S-Tec 명판으로 교체, 메인 대표 이미지(근태관리 디오라마), 디자인 전면 개편(오로라 배경·글래스 패널·벤토 메인), 지사·업종 필터, 지사별 집계, 지도 업종별 색상, 공개판 성명 가림
 - **v1.2.0** (2026-10-29) — 메인화면 사업장 지도(카카오맵·내 위치·스카이뷰, 에스텍 그룹 사업장·지사·본부, 사업장 현황 검색), Things to enjoy, 제작자 서명, 사업장 좌표와 권역(울산권·경주·포항권·대구·경북권) 정리, 서부·남부·중부지사 조직 추가, 다운로드 QR에 안드로이드 앱 추가, GitHub 저장소·안드로이드 앱 배포
 - **v1.1.0** (2026-10-29) — 근태 담당 지정(미지정 시 잠금), 다운로드 QR·친구 추천·주간/야간/시스템, S-Tec 로고 디자인, 메인화면(회사·조직·사업장·개인 진입), 본부·지사·권역 집계, 개인별 달력
