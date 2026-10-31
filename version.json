@@ -1,7 +1,7 @@
 {
-  "version": "2.1.0",
+  "version": "2.2.0",
   "date": "2026-10-31",
-  "note": "근로형태 조정(보안 일반→감시단속), 보안 근무조 감시단속 자동 분류, 엑셀 근무시간표 출근~퇴근·휴게·심야휴게 분리",
-  "html": "releases/Attendance_Management_Software_v2.1.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.1.0.apk"
+  "note": "실제 운영 휴게시간(시간대·휠 스크롤 수정·주간/심야 휴게), 사업장 특수 근무패턴(조정)",
+  "html": "releases/Attendance_Management_Software_v2.2.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.2.0.apk"
 }
