@@ -1,7 +1,7 @@
 {
-  "version": "2.3.0",
+  "version": "2.4.0",
   "date": "2026-10-31",
-  "note": "프로그램·앱 아이콘 교체",
-  "html": "releases/Attendance_Management_Software_v2.3.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.3.0.apk"
+  "note": "상단 문구·로고(앱 아이콘) 변경, 화면 배치 정리",
+  "html": "releases/Attendance_Management_Software_v2.4.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.4.0.apk"
 }
