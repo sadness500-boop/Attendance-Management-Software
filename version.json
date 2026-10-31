@@ -1,7 +1,7 @@
 {
-  "version": "1.8.0",
+  "version": "1.9.0",
   "date": "2026-10-31",
-  "note": "회사·조직 통합 엑셀 출력(월집계·개인명부·근무조 코드·변경 근태 내역·사업장별 근태)",
-  "html": "releases/Attendance_Management_Software_v1.8.0.html",
-  "apk": "releases/Attendance_Management_Software_v1.8.0.apk"
+  "note": "토·일·공휴일 열 색 구분, 시간가감 환산 강조(화면·엑셀)",
+  "html": "releases/Attendance_Management_Software_v1.9.0.html",
+  "apk": "releases/Attendance_Management_Software_v1.9.0.apk"
 }
