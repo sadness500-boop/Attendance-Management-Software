@@ -1,6 +1,8 @@
 # Attendance Management Software
 
-**에스텍베스트 근태관리 프로그램** · v2.2.3
+<img src="icons/icon-192.png" width="96" alt="S-Tec 근태관리 시스템 아이콘">
+
+**에스텍베스트 근태관리 프로그램** · v2.3.0
 
 에스텍베스트 전 지사(동부·서부·남부·중부) 사업장의 근태를 관리합니다. 근무조 코드를 개인에게 한 번 부여하면 2026년 1월부터 매월 1일~말일 근태가 코드대로 자동 생성되는 근태관리 프로그램입니다. 웹 버전과 안드로이드 앱(APK)으로 씁니다.
 
@@ -9,9 +11,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/attendance-management-software/ |
-| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.2.3.html](releases/Attendance_Management_Software_v2.2.3.html) | |
+| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.3.0.html](releases/Attendance_Management_Software_v2.3.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/attendance-management-software/releases/download/app-latest/ams-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.2.3.apk` | 릴리스 `v2.2.3` |
+| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.3.0.apk` | 릴리스 `v2.3.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -53,6 +55,7 @@
 
 ## 변경 이력
 
+- **v2.3.0** (2026-10-31) — 프로그램·앱 아이콘 교체(S-Tec 근태관리 시스템): 브라우저 탭, 크롬 앱 설치 아이콘, 안드로이드 앱 아이콘(적응형)
 - **v2.2.3** (2026-10-31) — 사업장 근태 아래 날짜별 근무 편성 인원(주간·야간·연근·휴무·근무 합계, 변경 근태 기준) 표시, 엑셀 출력 반영
 - **v2.2.2** (2026-10-31) — 글자 크기 재조정(v2.2.0보다 약간 크게), 상단 로고 영역·메인 소개 영역 크기·여백 축소
 - **v2.2.1** (2026-10-31) — 화면 전체의 작은 글자 확대로 시인성 개선

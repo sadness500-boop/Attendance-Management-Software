@@ -1,7 +1,7 @@
 {
-  "version": "2.2.3",
+  "version": "2.3.0",
   "date": "2026-10-31",
-  "note": "사업장 근태 날짜별 근무 편성 인원(주간·야간·연근·휴무)",
-  "html": "releases/Attendance_Management_Software_v2.2.3.html",
-  "apk": "releases/Attendance_Management_Software_v2.2.3.apk"
+  "note": "프로그램·앱 아이콘 교체",
+  "html": "releases/Attendance_Management_Software_v2.3.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.3.0.apk"
 }
