@@ -1,6 +1,6 @@
 # Attendance Management Software
 
-**에스텍베스트 근태관리 프로그램** · v2.0.0
+**에스텍베스트 근태관리 프로그램** · v2.1.0
 
 에스텍베스트 전 지사(동부·서부·남부·중부) 사업장의 근태를 관리합니다. 근무조 코드를 개인에게 한 번 부여하면 2026년 1월부터 매월 1일~말일 근태가 코드대로 자동 생성되는 근태관리 프로그램입니다. 웹 버전과 안드로이드 앱(APK)으로 씁니다.
 
@@ -9,9 +9,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/attendance-management-software/ |
-| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.0.0.html](releases/Attendance_Management_Software_v2.0.0.html) | |
+| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.1.0.html](releases/Attendance_Management_Software_v2.1.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/attendance-management-software/releases/download/app-latest/ams-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.0.0.apk` | 릴리스 `v2.0.0` |
+| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.1.0.apk` | 릴리스 `v2.1.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -51,6 +51,7 @@
 
 ## 변경 이력
 
+- **v2.1.0** (2026-10-31) — 근로형태 조정(보안 근무조 13개 일반→감시단속, 송원산업 본사 보안팀장 개인 감시단속, 계근·관리원 등 예외 일반 유지), 새 보안(SEC) 근무조는 주간 고정도 감시단속 자동 분류, 엑셀 근무시간표를 출근~퇴근·휴게시간·심야 휴게 열로 분리
 - **v2.0.0** (2026-10-31) — S-Tec 브랜드 디자인(네이비에 에스텍 로고 녹색 포인트), 상단 로고·프로그램명 확대, 화면 테마(주간·야간·시스템) 버튼 가로 정렬, 메인 소개 글자·수치·버튼 확대
 - **v1.9.0** (2026-10-31) — 사업장 근태의 토·일·공휴일·대체공휴일 열 전체 색 표시(토 파랑, 일·공휴일 빨강), 시간가감 환산을 노란 강조 칸으로 크게 표시하고 화면 오른쪽에 고정, 엑셀 출력에도 같은 색과 강조 적용
 - **v1.8.0** (2026-10-31) — 회사·조직 통합 엑셀 출력: 회사·조직을 고르면 포함된 모든 사업장의 사업장 근태·개인명부·근무조 코드·월집계·변경 근태 내역을 엑셀 파일 하나로 출력(월집계에서 사업장 시트로 바로 이동)
