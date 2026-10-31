@@ -1,7 +1,7 @@
 {
-  "version": "2.2.1",
+  "version": "2.2.2",
   "date": "2026-10-31",
-  "note": "작은 글자 확대(시인성 개선)",
-  "html": "releases/Attendance_Management_Software_v2.2.1.html",
-  "apk": "releases/Attendance_Management_Software_v2.2.1.apk"
+  "note": "글자 크기 재조정, 상단 로고·메인 소개 영역 축소",
+  "html": "releases/Attendance_Management_Software_v2.2.2.html",
+  "apk": "releases/Attendance_Management_Software_v2.2.2.apk"
 }
