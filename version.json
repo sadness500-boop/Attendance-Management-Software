@@ -1,7 +1,7 @@
 {
-  "version": "2.4.0",
-  "date": "2026-10-31",
-  "note": "상단 문구·로고(앱 아이콘) 변경, 화면 배치 정리",
-  "html": "releases/Attendance_Management_Software_v2.4.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.4.0.apk"
+  "version": "2.5.0",
+  "date": "2026-11-01",
+  "note": "K(연근) 변경 시 시간가감 = 주간+야간 기준",
+  "html": "releases/Attendance_Management_Software_v2.5.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.5.0.apk"
 }
