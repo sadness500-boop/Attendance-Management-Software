@@ -1,7 +1,7 @@
 {
-  "version": "2.6.0",
+  "version": "2.7.0",
   "date": "2026-11-04",
-  "note": "실명 명단 불러오기(엑셀)",
-  "html": "releases/Attendance_Management_Software_v2.6.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.6.0.apk"
+  "note": "근태표 크기 조절·이상근태 사용일수·±0.5h·사업장 분리",
+  "html": "releases/Attendance_Management_Software_v2.7.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.7.0.apk"
 }
