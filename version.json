@@ -1,7 +1,7 @@
 {
-  "version": "2.7.0",
+  "version": "2.8.0",
   "date": "2026-11-04",
-  "note": "근태표 크기 조절·이상근태 사용일수·±0.5h·사업장 분리",
-  "html": "releases/Attendance_Management_Software_v2.7.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.7.0.apk"
+  "note": "사업장 목록 글자 연동, 카카오맵·내 위치, 에스텍시스템 삭제",
+  "html": "releases/Attendance_Management_Software_v2.8.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.8.0.apk"
 }
