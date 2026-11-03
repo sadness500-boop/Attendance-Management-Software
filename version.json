@@ -1,7 +1,7 @@
 {
-  "version": "2.5.0",
-  "date": "2026-11-01",
-  "note": "K(연근) 변경 시 시간가감 = 주간+야간 기준",
-  "html": "releases/Attendance_Management_Software_v2.5.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.5.0.apk"
+  "version": "2.6.0",
+  "date": "2026-11-04",
+  "note": "실명 명단 불러오기(엑셀)",
+  "html": "releases/Attendance_Management_Software_v2.6.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.6.0.apk"
 }

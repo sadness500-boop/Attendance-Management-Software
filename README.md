@@ -2,7 +2,7 @@
 
 <img src="icons/icon-192.png" width="96" alt="S-Tec 근태관리 시스템 아이콘">
 
-**에스텍베스트 근태관리 프로그램** · v2.5.0
+**에스텍베스트 근태관리 프로그램** · v2.6.0
 
 에스텍베스트 전 지사(동부·서부·남부·중부) 사업장의 근태를 관리합니다. 근무조 코드를 개인에게 한 번 부여하면 2026년 1월부터 매월 1일~말일 근태가 코드대로 자동 생성되는 근태관리 프로그램입니다. 웹 버전과 안드로이드 앱(APK)으로 씁니다.
 
@@ -11,9 +11,9 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/attendance-management-software/ |
-| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.5.0.html](releases/Attendance_Management_Software_v2.5.0.html) | |
+| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.6.0.html](releases/Attendance_Management_Software_v2.6.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/attendance-management-software/releases/download/app-latest/ams-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.5.0.apk` | 릴리스 `v2.5.0` |
+| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.6.0.apk` | 릴리스 `v2.6.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -47,7 +47,7 @@
 
 ## 데이터 저장
 
-- **개인정보:** 공개 저장소의 프로그램에는 동부지사 근무자 성명을 가려(예: 류*화) 넣었고, 관리자 성명·연락처는 넣지 않았습니다. 실제 명단은 별도로 받은 백업 파일을 설정 › 데이터 백업 · 복원으로 불러옵니다(기기에만 저장).
+- **개인정보:** 공개 저장소의 프로그램에는 동부지사 근무자 성명을 가려(예: 류*화) 넣었고, 관리자 성명·연락처는 넣지 않았습니다. 실명은 「실명 불러오기」(사업장 근태·인원 관리·설정)에서 근태현황 엑셀을 고르면 이 기기에만 채워집니다.
 - 서부·남부·중부 사업장은 사업장 주소록의 업종별 인원·근무형태대로 "인원 자리"(예: 보안 01)를 만들어 두었습니다. 인원 관리에서 실제 성명으로 바꾸면 됩니다.
 
 - 입력한 근태·인원·코드는 그 기기의 브라우저(앱) 저장소에 보관됩니다. 설정 › 데이터 백업으로 정기적으로 복사해 두세요.
@@ -55,6 +55,7 @@
 
 ## 변경 이력
 
+- **v2.6.0** (2026-11-04) — 실명 명단 불러오기: 근태현황·통합근태 엑셀로 가린 성명을 실명으로 채움(기기에만 저장)
 - **v2.5.0** (2026-11-01) — K(연근) 시간가감 기준 변경: 연근이 없는 근무조는 K = 주간(A)+야간(B), A→K는 B 근무시간·B→K는 A 근무시간 반영
 - **v2.4.0** (2026-10-31) — 상단 설명 「에스텍 근태관리시스템」, 상단·하단 로고를 앱 아이콘으로 교체, 화면 배치 정리(내용 폭 1640px 가운데 정렬, 바로 가기 가로 줄, 메인 카드 같은 높이, 인원 관리 목록 확대·상세 패널 고정)
 - **v2.3.0** (2026-10-31) — 프로그램·앱 아이콘 교체(S-Tec 근태관리 시스템): 브라우저 탭, 크롬 앱 설치 아이콘, 안드로이드 앱 아이콘(적응형)
