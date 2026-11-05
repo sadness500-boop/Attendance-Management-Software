@@ -2,7 +2,7 @@
 
 <img src="icons/icon-192.png" width="96" alt="S-Tec 근태관리 시스템 아이콘">
 
-**에스텍베스트 근태관리 프로그램** · v2.8.0
+**에스텍베스트 근태관리 프로그램** · v2.9.0
 
 에스텍베스트 전 지사(동부·서부·남부·중부) 사업장의 근태를 관리합니다. 근무조 코드를 개인에게 한 번 부여하면 2026년 1월부터 매월 1일~말일 근태가 코드대로 자동 생성되는 근태관리 프로그램입니다. 웹 버전과 안드로이드 앱(APK)으로 씁니다.
 
@@ -11,9 +11,10 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/attendance-management-software/ |
-| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.8.0.html](releases/Attendance_Management_Software_v2.8.0.html) | |
+| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.9.0.html](releases/Attendance_Management_Software_v2.9.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/attendance-management-software/releases/download/app-latest/ams-latest.apk |
-| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.8.0.apk` | 릴리스 `v2.8.0` |
+| 제작자 관리 사용매뉴얼 | [docs/Attendance_Management_Software_제작자관리_사용매뉴얼_v2.9.0.docx](docs/Attendance_Management_Software_제작자관리_사용매뉴얼_v2.9.0.docx) | |
+| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.9.0.apk` | 릴리스 `v2.9.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -51,10 +52,23 @@
 - 서부·남부·중부 사업장은 사업장 주소록의 업종별 인원·근무형태대로 "인원 자리"(예: 보안 01)를 만들어 두었습니다. 인원 관리에서 실제 성명으로 바꾸면 됩니다.
 
 - 입력한 근태·인원·코드는 그 기기의 브라우저(앱) 저장소에 보관됩니다. 설정 › 데이터 백업으로 정기적으로 복사해 두세요.
-- 여러 사람이 같은 데이터를 함께 쓰려면 서버 DB 연동이 필요합니다 (다음 단계).
+- **로그인을 켜면(v2.9.0)** 근태 자료(`ams_v1_state`)와 화면 설정(`ams_v1_ui`)이 **각자 계정**으로 Supabase 서버에 저장되어, 같은 아이디로 자택 PC·회사 PC·휴대폰·태블릿에서 똑같이 보입니다. 서버의 자료는 보안 규칙(RLS)으로 **본인 계정만** 읽고 쓸 수 있습니다. 실명을 불러온 경우 실명도 본인 계정 서버 저장소에 올라갑니다.
+- 여러 사람이 **하나의** 근태 자료를 함께 고치는 기능(공유 자료)은 다음 단계입니다.
+
+## 제작자 관리 (v2.9.0 신규)
+
+로그인 · 사용 권한 · 관리자 페이지 · 여러 기기 동기화. 서버는 무료 **Supabase**를 씁니다.
+
+- **켜는 법:** ① Supabase 프로젝트 생성 → ② SQL Editor에서 [`server/supabase_setup.sql`](server/supabase_setup.sql) 실행(제작자 이메일 한 곳 수정) → ③ [`auth-config.json`](auth-config.json)에 Project URL · publishable(anon) 키 입력, `"enabled": true` → ④ 앱에서 제작자 이메일로 가입하면 자동으로 **제작자(owner)**.
+- **끄는 법:** `auth-config.json` 의 `"enabled": false` — 다음 실행부터 로그인 없이 예전처럼 사용.
+- **관리자 페이지:** 상단 "내 계정" 카드 › 관리자 페이지 — 가입 승인, 접속 차단/해제, 사용기한, 임시 비밀번호, 강제 로그아웃, 관리자 지정(제작자만), 계정 삭제, 접속기록, 기기별 차단, 관리작업 기록, 앱 전체 잠금(점검 모드).
+- **비밀번호는 암호화(bcrypt) 저장** — 제작자도 볼 수 없습니다. 대신 임시 비밀번호 발급 → 다음 로그인 때 변경 강제.
+- 안드로이드 앱(APK)도 같은 로그인을 씁니다. 앱은 `auth-config.json`을 이 저장소(raw.githubusercontent.com)에서 읽습니다.
+- publishable(anon) 키는 공개돼도 되는 키입니다. **secret / service_role 키는 절대 저장소·앱에 넣지 마세요.**
 
 ## 변경 이력
 
+- **v2.9.0** (2026-11-05) — 제작자 관리: 로그인·가입 승인제, 접속 차단/해제, 사용기한, 임시 비밀번호(암호화 저장), 강제 로그아웃, 접속기록·기기 관리·관리작업 기록, 앱 전체 잠금, 하나의 아이디로 여러 기기 근태 자료 동기화
 - **v2.8.0** (2026-11-04) — 사업장 목록 글자 = 근태표 글자(크기 조절 연동), 카카오맵 재시도·내 위치 자동 표시·길찾기, 에스텍시스템 표시 삭제
 - **v2.7.0** (2026-11-04) — 근태표 글자 축소·크기 조절(화면 맞춤), 이상근태 사용일수 칸, 변경 입력 ±0.5시간, 삼광 1~4공장·한주라이트메탈 원산/화산 사업장 분리
 - **v2.6.0** (2026-11-04) — 실명 명단 불러오기: 근태현황·통합근태 엑셀로 가린 성명을 실명으로 채움(기기에만 저장)
@@ -84,6 +98,9 @@
 index.html                  웹 버전 (GitHub Pages 시작 화면)
 releases/                   버전별 배포 파일 (HTML · APK)
 version.json                현재 버전
+auth-config.json            로그인 서버 연결 설정 (제작자가 수정)
+server/supabase_setup.sql   Supabase 서버 설정 SQL
+docs/                       사용매뉴얼
 manifest.webmanifest, sw.js, icons/   크롬 앱 설치(PWA)
 capacitor.config.json, package.json   안드로이드·아이폰 앱 포장 (Capacitor)
 .github/workflows/android-apk.yml     APK 자동 빌드
