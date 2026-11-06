@@ -1,0 +1,7 @@
+{
+  "version": "2.9.0",
+  "date": "2026-11-05",
+  "note": "제작자 관리 — 로그인·가입 승인·접속 차단·사용기한·임시 비밀번호·강제 로그아웃·접속기록·기기 관리·앱 전체 잠금, 하나의 아이디로 여러 기기 근태 자료 동기화",
+  "html": "releases/Attendance_Management_Software_v2.9.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.9.0.apk"
+}
