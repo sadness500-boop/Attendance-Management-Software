@@ -2,7 +2,7 @@
 
 <img src="icons/icon-192.png" width="96" alt="S-Tec 근태관리 시스템 아이콘">
 
-**에스텍베스트 근태관리 프로그램** · v2.11.0
+**에스텍베스트 근태관리 프로그램** · v2.12.0
 
 에스텍베스트 전 지사(동부·서부·남부·중부) 사업장의 근태를 관리합니다. 근무조 코드를 개인에게 한 번 부여하면 2026년 1월부터 매월 1일~말일 근태가 코드대로 자동 생성되는 근태관리 프로그램입니다. 웹 버전과 안드로이드 앱(APK)으로 씁니다.
 
@@ -11,10 +11,10 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/attendance-management-software/ |
-| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.11.0.html](releases/Attendance_Management_Software_v2.11.0.html) | |
+| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.12.0.html](releases/Attendance_Management_Software_v2.12.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/attendance-management-software/releases/download/app-latest/ams-latest.apk |
 | 제작자 관리 사용매뉴얼 | [docs/Attendance_Management_Software_제작자관리_사용매뉴얼_v2.9.0.docx](docs/Attendance_Management_Software_제작자관리_사용매뉴얼_v2.9.0.docx) | |
-| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.11.0.apk` | 릴리스 `v2.11.0` |
+| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.12.0.apk` | 릴리스 `v2.12.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -68,6 +68,7 @@
 
 ## 변경 이력
 
+- **v2.12.0** (2026-11-06) — 시간가감을 실제 가감시간(추가−공제)과 환산시간을 함께 표시(사업장 근태 카드·개인별 칸·엑셀)
 - **v2.11.0** (2026-11-06) — 일용직 근무조 코드(근무조 없음·근무일만 입력) 추가, 사업장 근태 엑셀 오른쪽 칸을 「이상근태 사용일수」로 변경
 - **v2.10.0** (2026-11-05) — 사업장 근태 성명 칸 ▲▼로 인원 순서 이동, 근무 설정 창에서 성명·POST·파트 수정·순서 이동, 근무조 코드 선택을 업종·근무형태(주간고정·격일제·3조2교대·5조2교대 등) 순서로 묶어 표시
 - **v2.9.0** (2026-11-05) — 제작자 관리: 로그인·가입 승인제, 접속 차단/해제, 사용기한, 임시 비밀번호(암호화 저장), 강제 로그아웃, 접속기록·기기 관리·관리작업 기록, 앱 전체 잠금, 하나의 아이디로 여러 기기 근태 자료 동기화
