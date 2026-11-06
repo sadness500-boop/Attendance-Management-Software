@@ -1,6 +1,6 @@
 {
-"enabled": true,
-"supabaseUrl": "https://abcdefghijk.supabase.co",
-"supabaseAnonKey": "sb_publishable_xxxxxxxxxxxxxxxx",
-"_설명": "Supabase 설정을 마친 뒤 위 두 값을 붙여넣고 enabled 를 true 로 바꾸세요. publishable(anon) 키는 공개해도 되는 키입니다. secret / service_role 키는 절대 넣지 마세요. — Designed & Developed by Rat Rae Choi"
+  "enabled": true,
+  "supabaseUrl": "https://mnsuebexlzhvomxhrear.supabase.co",
+  "supabaseAnonKey": "sb_publishable_QAD9rHyR_zI8Oyl30VuXqw_tDof_Ctx",
+  "_설명": "Supabase 설정을 마친 뒤 위 두 값을 붙여넣고 enabled 를 true 로 바꾸세요. publishable(anon) 키는 공개해도 되는 키입니다. secret / service_role 키는 절대 넣지 마세요. — Designed & Developed by Rat Rae Choi"
 }
