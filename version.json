@@ -1,7 +1,7 @@
 {
-  "version": "2.14.0",
+  "version": "2.14.1",
   "date": "2026-11-09",
-  "note": "변경 근태 입력창에 시간가감 직접 입력(+/− 버튼) 추가 — 입력 숫자를 가감·환산에 그대로 반영",
-  "html": "releases/Attendance_Management_Software_v2.14.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.14.0.apk"
+  "note": "변경 근태 입력창의 시간 입력칸·가감 버튼 크기 축소",
+  "html": "releases/Attendance_Management_Software_v2.14.1.html",
+  "apk": "releases/Attendance_Management_Software_v2.14.1.apk"
 }
