@@ -1,7 +1,7 @@
 {
-  "version": "2.14.2",
+  "version": "2.15.0",
   "date": "2026-11-09",
-  "note": "다운로드 QR·친구 추천 주소를 새 저장소 주소로 수정",
-  "html": "releases/Attendance_Management_Software_v2.14.2.html",
-  "apk": "releases/Attendance_Management_Software_v2.14.2.apk"
+  "note": "관리 범위(권한) — 사용자마다 전체·회사·지사·사업장 단위 근태 관리 권한, 공유 근태",
+  "html": "releases/Attendance_Management_Software_v2.15.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.15.0.apk"
 }
