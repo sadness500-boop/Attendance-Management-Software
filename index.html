@@ -2259,7 +2259,7 @@ function pageConfig(){
       <div class="panel"><div class="panel-h"><h2>프로그램 정보</h2></div><div class="panel-b about">
         <div><b>${APP.name}</b> <span class="ver">v${APP.version}</span></div>
         <div>빌드 ${APP.build} · ${esc(APP.org)}</div>
-        <div>v2.14.2 (2026-11-09) 저장소 이름 변경(Attendance-Management-Software)에 맞춰 다운로드 QR·친구 추천·앱 다운로드·로그인 설정 주소 수정</div>
+        <div>v2.14.2 (2026-11-09) 저장소 이름 변경(Attendance-Management-Software)에 맞춰 다운로드 QR·친구 추천·앱 다운로드·로그인 설정 주소 수정, 기기에 저장돼 있던 옛 사이트 주소도 자동으로 새 주소로 교체</div>
         <div>v2.14.1 (2026-11-09) 변경 근태 입력창의 시간 입력칸·가감 버튼 글자와 크기를 줄여 한 줄로 정리</div>
         <div>v2.14.0 (2026-11-09) 변경 근태 입력창에 「시간가감 직접 입력」(−4·−1·−0.5·+0.5·+1·+4·0 버튼) 추가 — 근태담당이 넣은 숫자를 가감·환산에 그대로 반영(배율 없음), 근태표 ⊕/⊖ 표시·엑셀·개인별 화면에도 표시</div>
         <div>v2.13.1 (2026-11-08) 갤럭시 폴더블 등 화면 너비 900px 이하에서 사업장 근태의 날짜(근태 입력) 칸이 보이지 않던 문제 수정, 휴대폰 화면에서는 오른쪽 이상근태 칸 고정을 풀어 날짜 칸을 넓게 표시</div>
@@ -3339,6 +3339,10 @@ migrate28(S); reindex(); save();
 { const _m=migrate; migrate=function(x){ _m(x); migrate28(x); return x; }; }
 migrate29(S); reindex(); save();
 { const _m=migrate; migrate=function(x){ _m(x); migrate29(x); return x; }; }
+/* v2.14.2 저장소 이름 변경(attendance-management-software → Attendance-Management-Software): 기기에 저장된 옛 사이트 주소를 새 주소로 */
+function fixShareUrl(o){ if(!o.shareUrl || /github\.io\/attendance-management-software\/?/i.test(o.shareUrl) && o.shareUrl!==APP.shareUrl) o.shareUrl=APP.shareUrl; }
+fixShareUrl(S); save();
+{ const _m=migrate; migrate=function(x){ _m(x); fixShareUrl(x); return x; }; }
 /* 이전에 「조정」을 변경 근태로 입력해 둔 것(조정 결과와 같고 시간·메모 없음)은 정리 — 조정 줄에서 정상 근태로 관리 */
 function cleanAdjOv(){
   if(S.adjClean22) return; let n=0;
