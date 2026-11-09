@@ -42,7 +42,9 @@ jobs:
 
       - name: 웹 파일 준비
         run: |
-          npm install
+          # 아이콘 도구(sharp)가 GitHub에서 libvips를 내려받다 일시 오류(504)가 나는 경우가 있어 재시도
+          ok=0; for i in 1 2 3 4 5; do if npm install; then ok=1; break; fi; echo "npm install 재시도 $i"; rm -rf node_modules/sharp; sleep $((i*20)); done
+          if [ $ok = 0 ]; then echo "::warning::sharp 설치 실패 — 스크립트 없이 설치"; npm install --ignore-scripts; fi
           npm run www
 
       - name: 안드로이드 프로젝트 만들기
