@@ -1,7 +1,7 @@
 {
-  "version": "2.16.0",
+  "version": "2.16.1",
   "date": "2026-11-11",
-  "note": "공유 근태 실시간 반영(같은 관리 범위끼리 서로 고친 근태 자동 반영·동시 수정 합치기) · 관리 범위 「보기만」 권한",
-  "html": "releases/Attendance_Management_Software_v2.16.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.16.0.apk"
+  "note": "공유 근태 보호 — 처음 만들 때 서버 사본/이 기기 자료 선택 확인, 덮어쓰기 전 자동 백업, 「백업에서 근태 되살리기」",
+  "html": "releases/Attendance_Management_Software_v2.16.1.html",
+  "apk": "releases/Attendance_Management_Software_v2.16.1.apk"
 }
