@@ -1,7 +1,7 @@
 {
-  "version": "2.15.0",
-  "date": "2026-11-09",
-  "note": "관리 범위(권한) — 사용자마다 전체·회사·지사·사업장 단위 근태 관리 권한, 공유 근태",
-  "html": "releases/Attendance_Management_Software_v2.15.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.15.0.apk"
+  "version": "2.16.0",
+  "date": "2026-11-11",
+  "note": "공유 근태 실시간 반영(같은 관리 범위끼리 서로 고친 근태 자동 반영·동시 수정 합치기) · 관리 범위 「보기만」 권한",
+  "html": "releases/Attendance_Management_Software_v2.16.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.16.0.apk"
 }
