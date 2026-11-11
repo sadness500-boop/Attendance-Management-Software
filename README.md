@@ -2,7 +2,7 @@
 
 <img src="icons/icon-192.png" width="96" alt="S-Tec 근태관리 시스템 아이콘">
 
-**에스텍베스트 근태관리 프로그램** · v2.16.1
+**에스텍베스트 근태관리 프로그램** · v2.17.0
 
 에스텍베스트 전 지사(동부·서부·남부·중부) 사업장의 근태를 관리합니다. 근무조 코드를 개인에게 한 번 부여하면 2026년 1월부터 매월 1일~말일 근태가 코드대로 자동 생성되는 근태관리 프로그램입니다. 웹 버전과 안드로이드 앱(APK)으로 씁니다.
 
@@ -11,10 +11,10 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Attendance-Management-Software/ |
-| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.16.1.html](releases/Attendance_Management_Software_v2.16.1.html) | |
+| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.17.0.html](releases/Attendance_Management_Software_v2.17.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/Attendance-Management-Software/releases/download/app-latest/ams-latest.apk |
 | 제작자 관리 사용매뉴얼 | [docs/Attendance_Management_Software_제작자관리_사용매뉴얼_v2.9.0.docx](docs/Attendance_Management_Software_제작자관리_사용매뉴얼_v2.9.0.docx) | |
-| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.16.1.apk` | 릴리스 `v2.16.1` |
+| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.17.0.apk` | 릴리스 `v2.17.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".
@@ -68,6 +68,7 @@
 
 ## 변경 이력
 
+- **v2.17.0** (2026-11-11) — 조직별 권한 — 회사·지사마다 수정/보기만/없음 따로 지정 (서버 SQL v2.17 필요): 「조직별 권한 따로 주기」, 하위 조직·새 사업장은 상위 조직 권한 상속, 새 회사는 「그 외」 권한. `server/supabase_v2.17_orgperm.sql` 실행
 - **v2.16.1** (2026-11-11) — 공유 근태 보호 — 처음 만들 때 서버 사본/이 기기 자료 선택 확인, 덮어쓰기 전 자동 백업, 「백업에서 근태 되살리기」, 같은 기기 다른 계정 로그인 시 공유 근태 기록도 초기화
 - **v2.16.0** (2026-11-11) — 공유 근태 실시간 반영: 같은 관리 범위 사용자끼리 서로 고친 근태가 약 20초 안에 화면에 반영(다시 열 필요 없음), 같은 사업장을 동시에 고쳐도 사람·날짜 단위로 합쳐 저장(버전 확인 저장). 관리 범위에 「👁 보기만」 권한 추가 — 볼 수만 있고 고치면 되돌아감(서버도 저장 거부). **Supabase SQL Editor에서 `server/supabase_v2.16_live.sql`을 한 번 실행해야 합니다**(실행 전에는 v2.15 방식으로 자동 동작).
 - **v2.15.0** (2026-11-09) — 관리 범위(권한): 관리자 페이지에서 사용자마다 「전체 · 회사·지사 단위 · 사업장 단위」 근태 관리 권한 지정, 범위를 받은 사용자는 공유 근태를 함께 보고 자기 범위 사업장만 수정(서버 확인). **Supabase SQL Editor에서 `server/supabase_v2.15_scope.sql`을 한 번 실행해야 합니다.**
