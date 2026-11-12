@@ -1,7 +1,7 @@
 {
-  "version": "2.17.0",
+  "version": "2.18.0",
   "date": "2026-11-11",
-  "note": "조직별 권한 — 회사·지사마다 수정/보기만/없음 따로 지정 (서버 SQL v2.17 필요)",
-  "html": "releases/Attendance_Management_Software_v2.17.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.17.0.apk"
+  "note": "추가근무 청구 내역(사업장 시트 다음 「사업장명 1」 시트) · 엑셀 환산 칸 글씨 축소",
+  "html": "releases/Attendance_Management_Software_v2.18.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.18.0.apk"
 }
