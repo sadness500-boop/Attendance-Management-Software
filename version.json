@@ -1,7 +1,7 @@
 {
-  "version": "2.19.0",
+  "version": "2.20.0",
   "date": "2026-11-11",
-  "note": "급여 메뉴(급여 설정·근태 환산 반영·4대보험·소득세·급여명세서 인쇄/엑셀) · 추가근무 및 기타 청구 내역(식대·장비 등, 청구 내역만 엑셀)",
-  "html": "releases/Attendance_Management_Software_v2.19.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.19.0.apk"
+  "note": "엑셀 자료 반영하기 — 조직·사업장·인원(근무조·근로형태·출퇴근·휴게)·급여 일괄 등록 양식과 한 번에 반영(미리보기·되돌리기)",
+  "html": "releases/Attendance_Management_Software_v2.20.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.20.0.apk"
 }
