@@ -13,7 +13,10 @@
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Attendance-Management-Software/ |
 | 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.20.0.html](releases/Attendance_Management_Software_v2.20.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/Attendance-Management-Software/releases/download/app-latest/ams-latest.apk |
-| 제작자 관리 사용매뉴얼 | [docs/Attendance_Management_Software_제작자관리_사용매뉴얼_v2.9.0.docx](docs/Attendance_Management_Software_제작자관리_사용매뉴얼_v2.9.0.docx) | |
+| 사용자 매뉴얼 (Word) | [docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.docx](docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.docx) | |
+| 사용자 매뉴얼 (PPT) | [docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.pptx](docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.pptx) | |
+| 제작자 관리 매뉴얼 (Word) | [docs/에스텍_근태관리시스템_제작자관리매뉴얼_v2.20.0.docx](docs/에스텍_근태관리시스템_제작자관리매뉴얼_v2.20.0.docx) | |
+| 제작자 관리 매뉴얼 (PPT) | [docs/에스텍_근태관리시스템_제작자관리매뉴얼_v2.20.0.pptx](docs/에스텍_근태관리시스템_제작자관리매뉴얼_v2.20.0.pptx) | |
 | 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.20.0.apk` | 릴리스 `v2.20.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
