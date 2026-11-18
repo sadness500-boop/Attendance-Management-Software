@@ -1104,6 +1104,7 @@ table.att sup.ja{color:var(--conv-ink,#c79a00);font-weight:800;margin-left:1px}
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="https://sadness500-boop.github.io/S-Tec-Operations-and-Sales-Integrated-Management-System/vendor/stec-master.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 /* ===== App identity (hard-coded) ===== */
@@ -5320,5 +5321,6 @@ if('serviceWorker' in navigator && location.protocol==='https:' && !window.Capac
   if(document.body) add(); else document.addEventListener('DOMContentLoaded', add);
 })();
 </script>
+<script>try{ if(window.StecMaster) StecMaster.register({code:'ams', softCommon:true, template:function(fill){ downloadBulkTemplate(fill, fill ? scopeSites().map(function(s){ return s.id; }) : undefined); }, apply:function(R, f){ setTimeout(function(){ var sp = document.getElementById('smPop'); if (sp) sp.remove(); openBulkImport(); var inp = document.querySelector('#bulkFile'); if (inp && window.DataTransfer) { var dt = new DataTransfer(); dt.items.add(f); inp.files = dt.files; inp.dispatchEvent(new Event('change')); } }, 60); return '이어서 근태관리 「엑셀 자료 반영하기」 미리보기가 열립니다 — 바뀔 내용을 확인한 뒤 반영하세요.'; }}); }catch(e){}</script>
 </body>
 </html>
