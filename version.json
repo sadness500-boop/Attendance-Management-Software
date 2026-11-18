@@ -1,7 +1,7 @@
 {
-  "version": "2.20.0",
-  "date": "2026-11-11",
-  "note": "엑셀 자료 반영하기 — 조직·사업장·인원(근무조·근로형태·출퇴근·휴게)·급여 일괄 등록 양식과 한 번에 반영(미리보기·되돌리기)",
-  "html": "releases/Attendance_Management_Software_v2.20.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.20.0.apk"
+  "version": "2.20.1",
+  "date": "2026-11-18",
+  "note": "통합관리 시스템 공통 기준정보(회사·조직·사업장) 연결 · 「📂 자료」 엑셀 양식·불러오기",
+  "html": "releases/Attendance_Management_Software_v2.20.1.html",
+  "apk": "releases/Attendance_Management_Software_v2.20.1.apk"
 }
