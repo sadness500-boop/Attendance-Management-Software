@@ -4305,11 +4305,12 @@ const fmtDT = s => { if(!s) return '-'; const d=new Date(s); if(isNaN(d)) return
 const todayKST = () => new Date(Date.now()+9*3600e3).toISOString().slice(0,10);
 const ROLE_KO = {owner:'제작자', admin:'관리자', user:'사용자'};
 const STATUS_KO = {pending:'승인 대기', active:'사용 중', suspended:'차단'};
-const EV_KO = {login:'로그인', login_fail:'로그인 실패', logout:'로그아웃', blocked:'접속 거부', forced:'강제 로그아웃'};
+const EV_KO = {login:'로그인', login_fail:'로그인 실패', logout:'로그아웃', blocked:'접속 거부', forced:'강제 로그아웃', app_open:'프로그램 열기'};
 const REASON_KO = {
   pending:['⏳','승인 대기 중','가입 신청이 접수되었습니다. 제작자(관리자)가 승인하면 바로 사용할 수 있습니다.<br>승인 후 이 화면에서 <b>다시 확인</b>을 누르세요.'],
   suspended:['⛔','사용이 중지된 계정','이 계정은 접속이 차단되었습니다. 필요하면 제작자에게 문의하세요.'],
   expired:['📅','사용기한 만료','사용기한이 지났습니다. 연장이 필요하면 제작자에게 요청하세요.'],
+  device_pending:['📲','새 기기 승인 대기','처음 사용하는 기기입니다. 제작자(관리자)가 관리 콘솔 「기기」에서 이 기기를 승인하면 바로 사용할 수 있습니다.<br>승인 후 <b>다시 확인</b>을 누르세요.'],
   device_blocked:['📵','이 기기는 사용 제한','이 기기에서는 사용할 수 없도록 설정되었습니다. 다른 기기를 쓰거나 제작자에게 문의하세요.'],
   locked:['🛠️','프로그램 점검 중',''],
   no_profile:['❓','계정 정보 없음','계정 정보가 아직 만들어지지 않았습니다. 잠시 뒤 다시 시도하거나 제작자에게 문의하세요.'],
@@ -5259,20 +5260,63 @@ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded'
 if('serviceWorker' in navigator && location.protocol==='https:' && !window.Capacitor){ navigator.serviceWorker.register('sw.js').catch(function(){}); }
 </script>
 <script>
-/* 에스텍 통합관리 — 「메인으로」 버튼 (S-Tec Operations and Sales Integrated Management System)
-   Designed & Developed by Rat Rae Choi */
+/* 에스텍 통합관리 공통 — 「메인」 버튼 · 조회 전용 기기 · 개별 앱 정리 (stec-shell v2)
+   S-Tec Operations and Sales Integrated Management System · Designed & Developed by Rat Rae Choi */
 (function(){
   if(document.getElementById('stecMainBtn')) return;
   var MAIN = 'https://sadness500-boop.github.io/S-Tec-Operations-and-Sales-Integrated-Management-System/';
+  var APK = 'https://github.com/sadness500-boop/S-Tec-Operations-and-Sales-Integrated-Management-System/releases/download/app-latest/stim-latest.apk';
+  var SB_URL = 'https://mnsuebexlzhvomxhrear.supabase.co', SB_KEY = 'sb_publishable_QAD9rHyR_zI8Oyl30VuXqw_tDof_Ctx';
+  var LEGACY_END = '2026-12-18';   // 개별 앱 병행 사용 마지막 날 (이 날까지 함께 사용)
+  var ls = function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } };
+  var native = false; try{ native = !!(window.Capacitor && Capacitor.isNativePlatform && Capacitor.isNativePlatform()); }catch(e){}
+  var legacy = native && ls('stec_shell') !== 'integrated';
+  var today = new Date(Date.now() + 9*3600e3).toISOString().slice(0,10);
   var st = document.createElement('style');
   st.textContent = '#stecMainBtn{position:fixed;left:12px;bottom:12px;z-index:8500;display:flex;align-items:center;gap:6px;padding:5px 12px 5px 5px;border-radius:999px;'
     + 'background:#0B1F8A;color:#fff!important;font:700 12.5px/1 "Malgun Gothic","Apple SD Gothic Neo",sans-serif;text-decoration:none!important;box-shadow:0 4px 14px rgba(0,0,0,.3);opacity:.88;transition:opacity .2s}'
-    + '#stecMainBtn:hover{opacity:1}#stecMainBtn img{width:24px;height:24px;border-radius:6px;display:block}@media print{#stecMainBtn{display:none!important}}';
+    + '#stecMainBtn:hover{opacity:1}#stecMainBtn img{width:24px;height:24px;border-radius:6px;display:block}'
+    + '.stecBan{position:fixed;left:50%;transform:translateX(-50%);top:8px;z-index:9000;color:#fff;padding:8px 16px;border-radius:999px;font:600 13px/1.4 "Malgun Gothic","Apple SD Gothic Neo",sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.3);max-width:92vw;text-align:center}'
+    + '.stecBan a{color:#FFE08A;font-weight:800;margin-left:8px}#stecRo{background:#7C2D12}#stecLg{background:#0B1F8A;top:auto;bottom:60px}'
+    + '#stecEnd{position:fixed;inset:0;z-index:9999;background:#0B1F8A;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center;font:15px/1.6 "Malgun Gothic","Apple SD Gothic Neo",sans-serif}'
+    + '#stecEnd img{width:96px;height:96px;border-radius:22px}#stecEnd a{background:#fff;color:#0B1F8A;padding:12px 22px;border-radius:12px;font-weight:800;text-decoration:none}'
+    + '.stec-ro-off{opacity:.45!important;pointer-events:none!important}'
+    + '@media print{#stecMainBtn,.stecBan,#stecEnd{display:none!important}}';
   document.head.appendChild(st);
-  var a = document.createElement('a'); a.id = 'stecMainBtn'; a.href = MAIN;
-  a.title = 'S-Tec Operations and Sales Integrated Management System — 메인 화면으로';
-  a.innerHTML = '<img src="' + MAIN + 'icons/favicon-48.png" alt="">메인';
-  var add = function(){ document.body.appendChild(a); };
+  var a = document.createElement('a'); a.id = 'stecMainBtn';
+  a.href = legacy ? APK : MAIN;
+  a.title = legacy ? '통합 앱 S-Tec Operations 설치' : 'S-Tec Operations and Sales Integrated Management System — 메인 화면으로';
+  a.innerHTML = '<img src="' + (legacy ? 'icons/favicon-48.png' : MAIN + 'icons/favicon-48.png') + '" alt="" onerror="this.remove()">' + (legacy ? '통합 앱' : '메인');
+  function ban(id, html){ var b = document.getElementById(id); if(!b){ b = document.createElement('div'); b.id = id; b.className = 'stecBan'; document.body.appendChild(b); } b.innerHTML = html; }
+  /* 조회 전용 기기: 서버가 저장을 거부하고, 화면의 저장·삭제 버튼도 잠급니다 */
+  var RO = /저장|삭제|등록|save|delete/i, roOn = false, roT = 0;
+  function roLock(){ if(!roOn) return; var bs = document.querySelectorAll('button,input[type=submit],input[type=button]');
+    for(var i = 0; i < bs.length; i++){ var b = bs[i], tx = (b.innerText || b.value || b.title || '');
+      if(RO.test(tx) && !b.closest('#stecMainBtn,.stecBan') && !/로그아웃|logout/i.test(tx)){ b.disabled = true; b.classList.add('stec-ro-off'); b.title = '이 기기는 조회 전용입니다'; } } }
+  function roCheck(){
+    var s = null; try{ s = JSON.parse(ls('stec_auth_session') || 'null'); }catch(e){}
+    var tok = s && (s.access_token || (s.currentSession && s.currentSession.access_token)), dev = ls('stec_device_id');
+    if(!tok || !dev || !window.fetch) return;
+    fetch(SB_URL + '/rest/v1/rpc/my_device', {method:'POST', headers:{'apikey':SB_KEY, 'Authorization':'Bearer ' + tok, 'Content-Type':'application/json'}, body:JSON.stringify({p_device:dev})})
+      .then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+        if(!d || !d.readonly) return; roOn = true;
+        ban('stecRo', '🔒 이 기기는 <b>조회 전용</b>입니다 — 보기만 되고 저장은 되지 않습니다');
+        roLock(); new MutationObserver(function(){ clearTimeout(roT); roT = setTimeout(roLock, 250); }).observe(document.body, {childList:true, subtree:true});
+      }).catch(function(){});
+  }
+  /* 개별 앱(APK): 병행 기간 안내 → 기간이 끝나면 통합 앱 설치 화면 */
+  function legacyNotice(){
+    if(!legacy) return;
+    if(today > LEGACY_END){
+      var e = document.createElement('div'); e.id = 'stecEnd';
+      e.innerHTML = '<img src="icons/favicon-48.png" alt="" onerror="this.remove()"><h2 style="margin:0">통합 앱으로 옮겨 주세요</h2>'
+        + '<p>이 개별 앱은 ' + LEGACY_END + '까지 사용했습니다.<br>이제 <b>S-Tec Operations</b> 앱 하나로 7개 프로그램을 모두 씁니다.<br>아이디·비밀번호는 그대로입니다.</p>'
+        + '<a href="' + APK + '">통합 앱 내려받기</a><small style="opacity:.75">설치 후 이 개별 앱은 지워도 됩니다</small>';
+      document.body.appendChild(e); return;
+    }
+    ban('stecLg', '📢 이 개별 앱은 <b>' + LEGACY_END + '</b>까지 함께 씁니다. 통합 앱 「S-Tec Operations」으로 옮겨 주세요<a href="' + APK + '">설치</a>');
+  }
+  var add = function(){ document.body.appendChild(a); legacyNotice(); setTimeout(roCheck, 1500); };
   if(document.body) add(); else document.addEventListener('DOMContentLoaded', add);
 })();
 </script>
