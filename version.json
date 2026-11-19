@@ -1,7 +1,7 @@
 {
-  "version": "2.20.1",
-  "date": "2026-11-18",
-  "note": "통합관리 시스템 공통 기준정보(회사·조직·사업장) 연결 · 「📂 자료」 엑셀 양식·불러오기",
-  "html": "releases/Attendance_Management_Software_v2.20.1.html",
-  "apk": "releases/Attendance_Management_Software_v2.20.1.apk"
+  "version": "2.21.0",
+  "date": "2026-11-19",
+  "note": "추가근무 및 기타 청구 내역 「📷 사진 불러오기」 — 영수증·장비 사진을 기타 청구 항목에 첨부, 엑셀 「사업장명 1」 시트 표 아래 「증빙 사진」에 내역과 함께 삽입",
+  "html": "releases/Attendance_Management_Software_v2.21.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.21.0.apk"
 }
