@@ -1,7 +1,7 @@
 {
-  "version": "2.21.0",
-  "date": "2026-11-19",
-  "note": "추가근무 및 기타 청구 내역 「📷 사진 불러오기」 — 영수증·장비 사진을 기타 청구 항목에 첨부, 엑셀 「사업장명 1」 시트 표 아래 「증빙 사진」에 내역과 함께 삽입",
-  "html": "releases/Attendance_Management_Software_v2.21.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.21.0.apk"
+  "version": "2.21.1",
+  "date": "2026-11-20",
+  "note": "메인화면 글자 크기 조정 — 관리 범위 카드·상단 소개 글·숫자 카드·사업장 현황 목록을 칸에 맞게 줄임",
+  "html": "releases/Attendance_Management_Software_v2.21.1.html",
+  "apk": "releases/Attendance_Management_Software_v2.21.1.apk"
 }
