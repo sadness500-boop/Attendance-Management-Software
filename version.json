@@ -1,7 +1,7 @@
 {
-  "version": "2.21.1",
-  "date": "2026-11-20",
-  "note": "메인화면 글자 크기 조정 — 관리 범위 카드·상단 소개 글·숫자 카드·사업장 현황 목록을 칸에 맞게 줄임",
-  "html": "releases/Attendance_Management_Software_v2.21.1.html",
-  "apk": "releases/Attendance_Management_Software_v2.21.1.apk"
+  "version": "2.22.0",
+  "date": "2026-11-21",
+  "note": "메인화면 사진을 디오라마 애니메이션(원본 GIF 640×360)으로 교체 — 통합 출입관리 시스템과 같은 방식으로 오른쪽 칸을 꽉 채우고 왼쪽 경계를 배경과 자연스럽게 연결",
+  "html": "releases/Attendance_Management_Software_v2.22.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.22.0.apk"
 }
