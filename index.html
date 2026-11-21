@@ -5461,9 +5461,11 @@ if('serviceWorker' in navigator && location.protocol==='https:' && !window.Capac
   if (window.STEC_BAR) return;
   const MAIN = 'https://sadness500-boop.github.io/S-Tec-Operations-and-Sales-Integrated-Management-System/';
   const MAN = {
-    user: { docx: MAIN + 'manuals/stec-user-manual.docx', pptx: MAIN + 'manuals/stec-user-manual.pptx', name: '에스텍_통합관리시스템_사용자매뉴얼' },
-    admin: { docx: MAIN + 'manuals/stec-admin-manual.docx', pptx: MAIN + 'manuals/stec-admin-manual.pptx', name: '에스텍_통합관리시스템_제작자관리매뉴얼' }
+    user: { docx: MAIN + 'manuals/stec-user-manual.docx', pptx: MAIN + 'manuals/stec-user-manual.pptx', name: '에스텍_통합관리시스템_사용자매뉴얼' }
   };
+  /* 제작자 관리매뉴얼은 공개 주소에 두지 않습니다 — 서버의 제작자 전용 보관함(owner-docs)에서 제작자 계정에게만 내려줍니다 */
+  const OWNER_BUCKET = 'owner-docs';
+  const APP_NAMES = { stim: '통합관리 시스템(메인)', stso: '사업장 현황 지도', ams: '근태관리', stcr: '고객 불만처리', stlr: '법률 대응 시스템', stqs: '용역인력 견적', wbe: '업무량 기반 산정', stse: '단기인력 견적', stpp: '제안서 제작시스템', stos: '업무표준화 · 매뉴얼', stpm: '성과 관리 시스템', stac: '통합 출입관리 시스템' };
   const H = CFG.hooks || {};
   const $ = s => { try { return s ? document.querySelector(s) : null; } catch (e) { return null; } };
   const E = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -5522,7 +5524,7 @@ ${hide ? hide + '{display:none!important}' : ''}
 .sb-bar.dk .sb-c.acc{background:#fff;color:#0f1a4d;border-color:#fff}
 @media (max-width:1500px){ .sb-c .sb-t.opt{display:none} .sb-c.opt-ic{width:38px;padding:0;justify-content:center} }
 @media (max-width:900px){ .sb-c .sb-t{display:none} .sb-c{width:38px;padding:0;justify-content:center} .sb-g .zv{min-width:40px} }
-#sbPop{position:fixed;inset:0;z-index:99990;background:rgba(6,10,40,.55);display:flex;align-items:center;justify-content:center;padding:16px;font-family:inherit}
+#sbPop{position:fixed;inset:0;z-index:99995;background:rgba(6,10,40,.55);display:flex;align-items:center;justify-content:center;padding:16px;font-family:inherit}
 #sbPop.hidden,#sbMan.hidden{display:none}
 .sb-box{width:100%;max-width:440px;max-height:92vh;overflow:auto;background:#fff;color:#141a3a;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.35);padding:22px 22px 14px}
 .sb-box h3{margin:0 0 6px;font-size:18px;display:flex;align-items:center;gap:8px}
@@ -5663,12 +5665,44 @@ ${hide ? hide + '{display:none!important}' : ''}
     m.innerHTML = `<div class="mh"><b>${I('book', 20)} 사용자 매뉴얼 <small style="font-weight:500;opacity:.75">에스텍 통합관리시스템 · 11개 프로그램 공통</small></b>
       <a href="${MAN.user.docx}" download="${MAN.user.name}.docx" target="_blank" rel="noopener">${I('down', 16)} Word</a>
       <a href="${MAN.user.pptx}" download="${MAN.user.name}.pptx" target="_blank" rel="noopener">${I('down', 16)} PPT</a>
+      ${isOwner() ? `<button type="button" id="sbManA">${I('shield', 16)} 제작자 관리매뉴얼</button>` : ''}
       <button type="button" class="x" id="sbManX">${I('x', 16)} 닫기</button></div>
       <iframe src="${MAIN}manual.html?doc=user&embed=1" title="사용자 매뉴얼"></iframe>`;
     document.getElementById('sbManX').onclick = closeManual;
+    if (document.getElementById('sbManA')) document.getElementById('sbManA').onclick = () => ownerDocs(CFG.app);
     document.body.style.overflow = 'hidden';
   }
   function closeManual() { const m = document.getElementById('sbMan'); if (m && m.className !== 'hidden') { m.className = 'hidden'; m.innerHTML = ''; document.body.style.overflow = ''; } }
+
+  /* ---------- 제작자 관리매뉴얼 (제작자만 · 서버 비공개 보관함) ---------- */
+  async function ownerGet(path) {
+    const c = cli(); if (!c || !c.storage) throw new Error('로그인이 필요합니다');
+    if (!isOwner()) throw new Error('제작자만 열 수 있습니다');
+    const { data, error } = await c.storage.from(OWNER_BUCKET).download(path);
+    if (error || !data) throw new Error((error && (error.message || error.error)) || '내려받지 못했습니다');
+    return data;
+  }
+  async function ownerJson(path) { const b = await ownerGet(path); return JSON.parse(await b.text()); }
+  async function ownerSave(path, name) {
+    try { const b = await ownerGet(path), u = URL.createObjectURL(b), a = document.createElement('a');
+      a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000); tip('내려받았습니다: ' + name); }
+    catch (e) { tip('제작자 관리매뉴얼: ' + (e.message || e)); }
+  }
+  async function ownerDocs(app) {
+    if (!isOwner()) { tip('제작자 관리매뉴얼은 제작자만 볼 수 있습니다'); return; }
+    pop(`<h3>${I('shield', 22)} 제작자 관리매뉴얼</h3><p>제작자 계정에서만 보이고 내려받을 수 있습니다(서버 비공개 보관함). 다른 사람은 주소를 알아도 열 수 없습니다.</p><div id="sbOd" class="sb-note">불러오는 중…</div>
+      <div class="sb-row"><button type="button" class="sb-btn sec" id="sbOdX">닫기</button></div>`);
+    document.getElementById('sbOdX').onclick = closePop;
+    let list = [];
+    try { list = await ownerJson('index.json'); } catch (e) { const el = document.getElementById('sbOd'); if (el) el.textContent = '불러오지 못했습니다: ' + (e.message || e); return; }
+    const rows = list.filter(x => !app || app === 'all' || x.app === app || x.app === 'stim');
+    const by = {}; rows.forEach(x => (by[x.app] = by[x.app] || []).push(x));
+    const el = document.getElementById('sbOd'); if (!el) return;
+    el.className = ''; el.style.cssText = 'max-height:52vh;overflow:auto';
+    el.innerHTML = Object.keys(by).map(a => `<div style="margin:10px 0 4px;font-weight:800;color:#1530a0">${E(APP_NAMES[a] || a)}</div>` +
+      by[a].map((x, i) => `<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #eceff6;font-size:13px"><span style="flex:1;word-break:break-all">${E(x.name)}</span><button type="button" class="sb-btn" style="flex:0 0 auto;min-width:0;padding:7px 12px;font-size:12.5px" data-od="${E(x.path)}" data-nm="${E(x.name)}">${I('down', 15)} 받기</button></div>`).join('')).join('') || '<div class="sb-note">등록된 파일이 없습니다</div>';
+    el.querySelectorAll('[data-od]').forEach(b => b.onclick = () => ownerSave(b.dataset.od, b.dataset.nm));
+  }
 
   /* ---------- 내 정보 ---------- */
   async function openMe() {
@@ -5731,7 +5765,7 @@ ${hide ? hide + '{display:none!important}' : ''}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 
-  window.STEC_BAR = { openConsole, consoleLabel, consoleKind, openManual, closeManual, openMe, refresh: () => { S.orgAt = 0; loadOrg(true); }, render, MAIN, MAN, zSet };
+  window.STEC_BAR = { ownerDocs, ownerGet, ownerJson, ownerSave, isOwner, openConsole, consoleLabel, consoleKind, openManual, closeManual, openMe, refresh: () => { S.orgAt = 0; loadOrg(true); }, render, MAIN, MAN, zSet };
 })();
 
 </script>
