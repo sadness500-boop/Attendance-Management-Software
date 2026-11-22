@@ -5491,7 +5491,7 @@ if('serviceWorker' in navigator && location.protocol==='https:' && !window.Capac
 </script>
 <script>try{ if(window.StecMaster) StecMaster.register({code:'ams', softCommon:true, template:function(fill){ downloadBulkTemplate(fill, fill ? scopeSites().map(function(s){ return s.id; }) : undefined); }, apply:function(R, f){ setTimeout(function(){ var sp = document.getElementById('smPop'); if (sp) sp.remove(); openBulkImport(); var inp = document.querySelector('#bulkFile'); if (inp && window.DataTransfer) { var dt = new DataTransfer(); dt.items.add(f); inp.files = dt.files; inp.dispatchEvent(new Event('change')); } }, 60); return '이어서 근태관리 「엑셀 자료 반영하기」 미리보기가 열립니다 — 바뀔 내용을 확인한 뒤 반영하세요.'; }}); }catch(e){}</script>
 <!-- STEC-BAR START (공통 상단 버튼 — vendor/stec-bar.js 에서 생성) -->
-<script>window.STEC_BAR_CFG = {"app": "ams", "before": ".band .cards", "hide": [".band .cards"], "mine": "#mgrCard", "qr": "#qrCard", "share": "#refCard", "acct": "#acctCard", "theme": {"attr": "data-theme-set"}, "head": {"el": "header.band", "into": ".band .band-in", "hide": [".band a.logo"], "home": ".band a.logo", "lines": true, "en": "Attendance Management Software", "ko": "에스텍 근태관리시스템"}, "foot": {"hide": [".makerWrap", "section.enjoy", "footer.sign"], "after": "footer.sign"}, "manual": {"html": "docs/user-manual.html", "docx": "docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.docx", "pptx": "docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.pptx", "name": "Attendance Management Software_사용자매뉴얼_v2.20.0", "title": "에스텍 근태관리시스템"}};</script>
+<script>window.STEC_BAR_CFG = {"app": "ams", "before": ".band .cards", "hide": [".band .cards"], "mine": "#mgrCard", "qr": "#qrCard", "share": "#refCard", "acct": "#acctCard", "theme": {"attr": "data-theme-set"}, "head": {"el": "header.band", "into": ".band .band-in", "hide": [".band a.logo"], "home": ".band a.logo", "lines": true, "en": "Attendance Management Software", "ko": "에스텍 근태관리시스템"}, "foot": {"hide": [".makerWrap", "section.enjoy", "footer.sign"], "after": "footer.sign"}, "manual": {"html": "docs/user-manual.html", "docx": "docs/Attendance-Management-Software_사용자매뉴얼_v2.22.0.docx", "pptx": "docs/Attendance-Management-Software_사용자매뉴얼_v2.22.0.pptx", "pdf": "docs/Attendance-Management-Software_사용자매뉴얼_v2.22.0.pdf", "name": "Attendance Management Software_사용자매뉴얼_v2.22.0", "title": "에스텍 근태관리시스템"}};</script>
 <script>
 /* =====================================================================
  * 에스텍 통합관리시스템 공통 상단 버튼 (stec-bar) v1.0
@@ -5508,7 +5508,7 @@ if('serviceWorker' in navigator && location.protocol==='https:' && !window.Capac
   if (window.STEC_BAR) return;
   const MAIN = 'https://sadness500-boop.github.io/S-Tec-Operations-and-Sales-Integrated-Management-System/';
   const MAN = {
-    user: { docx: MAIN + 'manuals/stec-user-manual.docx', pptx: MAIN + 'manuals/stec-user-manual.pptx', name: '에스텍_통합관리시스템_사용자매뉴얼' }
+    user: { docx: MAIN + 'manuals/stec-user-manual.docx', pptx: MAIN + 'manuals/stec-user-manual.pptx', pdf: MAIN + 'manuals/stec-user-manual.pdf', name: '에스텍_통합관리시스템_사용자매뉴얼' }
   };
   /* 제작자 관리매뉴얼은 공개 주소에 두지 않습니다 — 서버의 제작자 전용 보관함(owner-docs)에서 제작자 계정에게만 내려줍니다 */
   const OWNER_BUCKET = 'owner-docs';
@@ -5870,21 +5870,64 @@ ${hide ? hide + '{display:none!important}' : ''}
       a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000); tip('내려받았습니다: ' + name); }
     catch (e) { tip('제작자 관리매뉴얼: ' + (e.message || e)); }
   }
+  /* 파일 이름으로 프로그램 알아내기 (영문 이름 · 한글 이름) */
+  const APP_EN = { stim: 'S-Tec-Operations-and-Sales', stso: 'Business-Site-Overview', ams: 'Attendance-Management', stcr: 'Complaint-Response', stlr: 'Legal-Response', stqs: 'Quotation-System',
+    wbe: 'Workload-Based', stse: 'short-estimate', stpp: 'Proposal-Production', stos: 'Process-Standardization', stpm: 'Performance-Management', stac: 'Access-Control' };
+  const guessApp = n => { const x = String(n).replace(/[\s_]+/g, '-').toLowerCase(); for (const [a, k] of Object.entries(APP_EN)) if (x.includes(k.toLowerCase())) return a; return ''; };
+  async function ownerPut(app, file) {
+    const c = cli(); if (!c || !c.storage) throw new Error('로그인이 필요합니다');
+    const ext = (file.name.split('.').pop() || 'bin').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const slug = file.name.replace(/\.[^.]+$/, '').replace(/[^A-Za-z0-9.\-]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, 80) || 'file';
+    const path = `${app}/${slug}-${Date.now().toString(36)}.${ext}`;
+    const { error } = await c.storage.from(OWNER_BUCKET).upload(path, file, { upsert: true, contentType: file.type || 'application/octet-stream' });
+    if (error) throw new Error(error.message || '올리지 못했습니다');
+    return path;
+  }
+  async function ownerIndexSave(list) {
+    const c = cli(); const b = new Blob([JSON.stringify(list, null, 1)], { type: 'application/json' });
+    const { error } = await c.storage.from(OWNER_BUCKET).upload('index.json', b, { upsert: true, contentType: 'application/json' });
+    if (error) throw new Error(error.message || '목록을 저장하지 못했습니다');
+  }
   async function ownerDocs(app) {
     if (!isOwner()) { tip('제작자 관리매뉴얼은 제작자만 볼 수 있습니다'); return; }
     pop(`<h3>${I('shield', 22)} 제작자 관리매뉴얼</h3><p>제작자 계정에서만 보이고 내려받을 수 있습니다(서버 비공개 보관함). 다른 사람은 주소를 알아도 열 수 없습니다.</p><div id="sbOd" class="sb-note">불러오는 중…</div>
-      <div class="sb-row"><button type="button" class="sb-btn sec" id="sbOdX">닫기</button></div>`);
+      <div class="sb-row" style="flex-wrap:wrap"><select id="sbOdApp" style="flex:1 1 180px;min-width:0;padding:9px 10px;border:1px solid #cfd6e6;border-radius:10px;font:inherit;font-size:13px"><option value="">프로그램 — 파일 이름으로 자동</option>${Object.entries(APP_NAMES).map(([a, n]) => `<option value="${a}">${E(n)}</option>`).join('')}</select>
+        <button type="button" class="sb-btn" id="sbOdUp">📤 올리기</button><input type="file" id="sbOdF" multiple accept=".docx,.pptx,.pdf,.xlsx,.zip" hidden>
+        <button type="button" class="sb-btn sec" id="sbOdX">닫기</button></div>`);
     document.getElementById('sbOdX').onclick = closePop;
     let list = [];
-    try { list = await ownerJson('index.json'); } catch (e) { const el = document.getElementById('sbOd'); if (el) el.textContent = '불러오지 못했습니다: ' + (e.message || e); return; }
-    const rows = list.filter(x => !app || app === 'all' || x.app === app || x.app === 'stim');
-    const by = {}; rows.forEach(x => (by[x.app] = by[x.app] || []).push(x));
-    const el = document.getElementById('sbOd'); if (!el) return;
-    el.className = ''; el.style.cssText = 'max-height:52vh;overflow:auto';
-    el.innerHTML = Object.keys(by).map(a => `<div style="margin:10px 0 4px;font-weight:800;color:#1530a0">${E(APP_NAMES[a] || a)}</div>` +
-      by[a].map((x, i) => `<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #eceff6;font-size:13px"><span style="flex:1;word-break:break-all">${E(x.name)}</span><button type="button" class="sb-btn" style="flex:0 0 auto;min-width:0;padding:7px 12px;font-size:12.5px" data-od="${E(x.path)}" data-nm="${E(x.name)}">${I('down', 15)} 받기</button></div>`).join('')).join('') || '<div class="sb-note">등록된 파일이 없습니다</div>';
-    el.querySelectorAll('[data-od]').forEach(b => b.onclick = () => ownerSave(b.dataset.od, b.dataset.nm));
+    const draw = () => {
+      const rows = list.filter(x => !app || app === 'all' || x.app === app || x.app === 'stim');
+      const by = {}; rows.forEach(x => (by[x.app] = by[x.app] || []).push(x));
+      const el = document.getElementById('sbOd'); if (!el) return;
+      el.className = ''; el.style.cssText = 'max-height:52vh;overflow:auto';
+      el.innerHTML = Object.keys(by).map(a => `<div style="margin:10px 0 4px;font-weight:800;color:#1530a0">${E(APP_NAMES[a] || a)}</div>` +
+        by[a].map(x => `<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #eceff6;font-size:13px"><span style="flex:1;word-break:break-all">${E(x.name)}</span><button type="button" class="sb-btn" style="flex:0 0 auto;min-width:0;padding:7px 12px;font-size:12.5px" data-od="${E(x.path)}" data-nm="${E(x.name)}">${I('down', 15)} 받기</button><button type="button" class="sb-btn sec" style="flex:0 0 auto;min-width:0;padding:7px 10px;font-size:12px" data-del="${E(x.path)}" title="목록에서 지우기">삭제</button></div>`).join('')).join('') || '<div class="sb-note">등록된 파일이 없습니다</div>';
+      el.querySelectorAll('[data-od]').forEach(b => b.onclick = () => ownerSave(b.dataset.od, b.dataset.nm));
+      el.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => {
+        const x = list.find(y => y.path === b.dataset.del); if (!x || !confirm(`「${x.name}」을(를) 보관함에서 지울까요? 되돌릴 수 없습니다.`)) return;
+        try { await cli().storage.from(OWNER_BUCKET).remove([x.path]); list = list.filter(y => y !== x); await ownerIndexSave(list); draw(); tip('지웠습니다'); } catch (e) { tip('지우지 못했습니다: ' + (e.message || e)); } });
+    };
+    try { list = await ownerJson('index.json'); } catch (e) { list = []; }
+    draw();
+    const F = document.getElementById('sbOdF');
+    document.getElementById('sbOdUp').onclick = () => F.click();
+    F.onchange = async () => {
+      const files = [...F.files]; if (!files.length) return; const pick = document.getElementById('sbOdApp').value; let ok = 0;
+      for (const f of files) {
+        const a = pick || guessApp(f.name) || (app && app !== 'all' ? app : '');
+        if (!a) { tip(`「${f.name}」: 프로그램을 알 수 없습니다 — 위에서 프로그램을 고른 뒤 올리세요`); continue; }
+        try { tip(`올리는 중… ${f.name}`); const path = await ownerPut(a, f);
+          const old = list.filter(y => y.app === a && y.name === f.name);
+          if (old.length) { try { await cli().storage.from(OWNER_BUCKET).remove(old.map(y => y.path)); } catch (e) { } }
+          list = list.filter(y => !(y.app === a && y.name === f.name)).concat([{ app: a, path, name: f.name, at: new Date().toISOString().slice(0, 10) }]); ok++; }
+        catch (e) { tip(`「${f.name}」 올리기 실패: ` + (e.message || e)); }
+      }
+      if (ok) { try { list.sort((x, y) => (x.app + x.name).localeCompare(y.app + y.name)); await ownerIndexSave(list); tip(`${ok}개 올렸습니다`); } catch (e) { tip(e.message || String(e)); } }
+      F.value = ''; draw();
+    };
   }
+
 
   /* ---------- 내 정보 ---------- */
   async function openMe() {
