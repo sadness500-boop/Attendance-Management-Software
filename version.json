@@ -1,7 +1,7 @@
 {
-  "version": "2.22.2",
+  "version": "2.22.3",
   "date": "2026-11-22",
-  "note": "급여명세서에 입사일 기준 연차 반영 — 발생연차·사용(누적)·이번 달 사용·잔여연차, 1년 미만은 개정 연차(1개월 개근 1일, 최대 11일, 입사 1년까지 사용), 1년 이상 15일·2년마다 1일 가산(최대 25일), 엑셀 명세서에도 반영",
-  "html": "releases/Attendance_Management_Software_v2.22.2.html",
-  "apk": "releases/Attendance_Management_Software_v2.22.2.apk"
+  "note": "엑셀 자료 반영하기 — 「사업장」 시트의 형태·업무·근무형태·계약 T/O를 ▼ 목록에서 고르기(목록에 없으면 직접 입력), 양식을 PDF로 저장한 파일도 불러오기(조직·사업장)",
+  "html": "releases/Attendance_Management_Software_v2.22.3.html",
+  "apk": "releases/Attendance_Management_Software_v2.22.3.apk"
 }
