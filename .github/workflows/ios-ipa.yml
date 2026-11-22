@@ -1,0 +1,102 @@
+# 아이폰용 앱 파일(ipa)을 만듭니다. version.json 을 올리거나 Actions 탭에서 직접 실행하면
+#   1) 저장소 releases/Attendance_Management_Software_v{버전}.ipa
+#   2) 릴리스 v{버전} 과 app-latest 에 같은 파일을 올립니다.
+# Apple 개발자 서명이 없는 파일이므로 아이폰에는 Sideloadly·AltStore 같은 설치 도구로
+# 본인 Apple ID 서명을 넣어 설치합니다. 서명 없이 쓰려면 Safari에서 웹 주소를 열고
+# 「공유 › 홈 화면에 추가」로 앱처럼 씁니다.
+# Produced by RatRae Choi
+name: iOS IPA
+
+on:
+  push:
+    branches: [main]
+    paths: [version.json, .github/workflows/ios-ipa.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+
+      - name: 버전 읽기
+        id: ver
+        run: |
+          V=$(jq -r .version version.json)
+          echo "v=$V" >> "$GITHUB_OUTPUT"
+          IFS=. read -r MA MI PA <<< "$V"
+          echo "code=$((MA*10000 + MI*100 + PA))" >> "$GITHUB_OUTPUT"
+          echo "IPA 버전 $V"
+
+      - name: 웹 파일 준비
+        run: |
+          ok=0; for i in 1 2 3 4 5; do if npm install; then ok=1; break; fi; echo "npm install 재시도 $i"; rm -rf node_modules/sharp; sleep $((i*20)); done
+          if [ $ok = 0 ]; then echo "::warning::sharp 설치 실패 — 스크립트 없이 설치"; npm install --ignore-scripts; fi
+          npm run www
+
+      - name: 아이폰 프로젝트 만들기
+        run: |
+          npx cap add ios
+          mkdir -p assets && cp icons/app-icon-legacy-1024.png assets/icon-only.png
+          npx capacitor-assets generate --ios --iconBackgroundColor '#0b1757' --splashBackgroundColor '#0b1757' || true
+          npx cap sync ios
+
+      - name: 버전·위치 권한 문구 넣기
+        run: |
+          P=ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${{ steps.ver.outputs.v }}" "$P" || /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string ${{ steps.ver.outputs.v }}" "$P"
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${{ steps.ver.outputs.code }}" "$P" || /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string ${{ steps.ver.outputs.code }}" "$P"
+          /usr/libexec/PlistBuddy -c "Add :NSLocationWhenInUseUsageDescription string 사업장 지도에서 내 위치와 가까운 사업장을 보여주기 위해 위치를 사용합니다." "$P" || true
+          /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string 근태 담당 사진을 고르기 위해 사진 보관함을 사용합니다." "$P" || true
+          sed -i '' -e 's/MARKETING_VERSION = [^;]*;/MARKETING_VERSION = ${{ steps.ver.outputs.v }};/g' -e 's/CURRENT_PROJECT_VERSION = [^;]*;/CURRENT_PROJECT_VERSION = ${{ steps.ver.outputs.code }};/g' ios/App/App.xcodeproj/project.pbxproj
+          /usr/libexec/PlistBuddy -c "Print" "$P" | head -40
+
+      - name: ipa 빌드 (서명 없음)
+        run: |
+          cd ios/App
+          W=App.xcworkspace; [ -d "$W" ] || W=""
+          if [ -n "$W" ]; then SRC=(-workspace "$W"); else SRC=(-project App.xcodeproj); fi
+          xcodebuild "${SRC[@]}" -scheme App -configuration Release -sdk iphoneos -destination 'generic/platform=iOS' \
+            -derivedDataPath build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build | tail -40
+          APP=$(find build/Build/Products/Release-iphoneos -maxdepth 1 -name '*.app' | head -1)
+          test -n "$APP"
+          rm -rf Payload && mkdir Payload && cp -R "$APP" Payload/
+          V=${{ steps.ver.outputs.v }}
+          mkdir -p ../../releases
+          zip -qry "../../releases/Attendance_Management_Software_v$V.ipa" Payload
+          cp "../../releases/Attendance_Management_Software_v$V.ipa" ../../ams-latest.ipa
+          ls -la ../../releases/*.ipa
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Attendance_Management_Software_v${{ steps.ver.outputs.v }}_ios
+          path: releases/Attendance_Management_Software_v${{ steps.ver.outputs.v }}.ipa
+
+      - name: 저장소 releases 폴더에 ipa 올리기
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "releases/Attendance_Management_Software_v${{ steps.ver.outputs.v }}.ipa"
+          git commit -m "IPA v${{ steps.ver.outputs.v }} 빌드 [skip ci]" || echo "변경 없음"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 10; done
+
+      - name: 버전 릴리스에 ipa 추가
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.ver.outputs.v }}
+          files: releases/Attendance_Management_Software_v${{ steps.ver.outputs.v }}.ipa
+          make_latest: false
+
+      - name: 최신판 릴리스에 ipa 추가
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: app-latest
+          files: ams-latest.ipa
+          make_latest: true
