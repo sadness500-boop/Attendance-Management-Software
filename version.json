@@ -1,7 +1,7 @@
 {
-  "version": "2.22.3",
-  "date": "2026-11-22",
-  "note": "엑셀 자료 반영하기 — 「사업장」 시트의 형태·업무·근무형태·계약 T/O를 ▼ 목록에서 고르기(목록에 없으면 직접 입력), 양식을 PDF로 저장한 파일도 불러오기(조직·사업장)",
-  "html": "releases/Attendance_Management_Software_v2.22.3.html",
-  "apk": "releases/Attendance_Management_Software_v2.22.3.apk"
+  "version": "2.23.0",
+  "date": "2026-11-23",
+  "note": "「⬆ 엑셀 가져오기」 — 「엑셀로 출력」·「조직 통합 엑셀」 파일에서 고친 변경 근태(「변경」 줄)·야간h·메모·전달사항을 미리보기 후 반영, 방금 가져오기 되돌리기 / 「📝 급여·근태 전달사항」 칸 — 사업장·월별 메모를 급여 화면 맨 위에 표시하고 엑셀 「사업장명 1」 시트에 기록",
+  "html": "releases/Attendance_Management_Software_v2.23.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.23.0.apk"
 }
