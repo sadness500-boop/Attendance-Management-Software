@@ -1,7 +1,7 @@
 {
-  "version": "2.23.0",
-  "date": "2026-11-23",
-  "note": "「⬆ 엑셀 가져오기」 — 「엑셀로 출력」·「조직 통합 엑셀」 파일에서 고친 변경 근태(「변경」 줄)·야간h·메모·전달사항을 미리보기 후 반영, 방금 가져오기 되돌리기 / 「📝 급여·근태 전달사항」 칸 — 사업장·월별 메모를 급여 화면 맨 위에 표시하고 엑셀 「사업장명 1」 시트에 기록",
-  "html": "releases/Attendance_Management_Software_v2.23.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.23.0.apk"
+  "version": "2.23.1",
+  "date": "2026-11-25",
+  "note": "「📝 급여·근태 전달사항」에 📷 사진 올리기 — 여러 장·휴대폰 촬영, 급여 화면에 미리보기, 엑셀 「사업장명 1」 시트 전달사항 아래에 사진 함께 출력 / 관리범위는 통합관리 콘솔에서 조직별 ✏️수정·👁보기로 지정",
+  "html": "releases/Attendance_Management_Software_v2.23.1.html",
+  "apk": "releases/Attendance_Management_Software_v2.23.1.apk"
 }
