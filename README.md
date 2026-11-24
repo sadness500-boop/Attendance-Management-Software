@@ -2,7 +2,7 @@
 
 <img src="icons/icon-192.png" width="96" alt="S-Tec 근태관리 시스템 아이콘">
 
-**에스텍베스트 근태관리 프로그램** · v2.23.1
+**에스텍베스트 근태관리 프로그램** · v2.24.0
 
 에스텍베스트 전 지사(동부·서부·남부·중부) 사업장의 근태를 관리합니다. 근무조 코드를 개인에게 한 번 부여하면 2026년 1월부터 매월 1일~말일 근태가 코드대로 자동 생성되는 근태관리 프로그램입니다. 웹 버전과 안드로이드 앱(APK)으로 씁니다.
 
@@ -11,12 +11,12 @@
 | 구분 | 파일 | 주소 |
 |---|---|---|
 | 웹 버전 | [index.html](index.html) | https://sadness500-boop.github.io/Attendance-Management-Software/ |
-| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.23.1.html](releases/Attendance_Management_Software_v2.23.1.html) | |
+| 웹 버전 (버전별) | [releases/Attendance_Management_Software_v2.24.0.html](releases/Attendance_Management_Software_v2.24.0.html) | |
 | 안드로이드 앱 (최신) | `ams-latest.apk` | https://github.com/sadness500-boop/Attendance-Management-Software/releases/download/app-latest/ams-latest.apk |
 | 사용자 매뉴얼 (Word) | [docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.docx](docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.docx) | |
 | 사용자 매뉴얼 (PPT) | [docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.pptx](docs/에스텍_근태관리시스템_사용자매뉴얼_v2.20.0.pptx) | |
 | 제작자 관리 매뉴얼 (Word · PPT) | 제작자만 — 메인 「🛡 제작자 관리 콘솔 → 📘 매뉴얼 → 📂 프로그램별 제작자 관리매뉴얼」 또는 상단 「📘 사용자 매뉴얼 → 🛡 제작자 관리매뉴얼」 (서버 비공개 보관함, 공개 주소 없음) | |
-| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.23.1.apk` | 릴리스 `v2.23.1` |
+| 안드로이드 앱 (버전별) | `releases/Attendance_Management_Software_v2.24.0.apk` | 릴리스 `v2.24.0` |
 
 - **APK는 GitHub Actions가 만듭니다.** `index.html` 또는 `version.json`을 올리면 Actions 탭의 "Android APK"가 실행되어 약 5분 뒤 `releases/` 폴더와 릴리스에 버전 이름이 붙은 APK가 올라갑니다. Actions 탭 › Android APK › Run workflow 로 직접 실행할 수도 있습니다.
 - **안드로이드 설치:** APK 내려받기 → "출처를 알 수 없는 앱 설치 허용" → 설치. Play 프로텍트 경고가 뜨면 "무시하고 설치".

@@ -1,7 +1,7 @@
 {
-  "version": "2.23.1",
+  "version": "2.24.0",
   "date": "2026-11-25",
-  "note": "「📝 급여·근태 전달사항」에 📷 사진 올리기 — 여러 장·휴대폰 촬영, 급여 화면에 미리보기, 엑셀 「사업장명 1」 시트 전달사항 아래에 사진 함께 출력 / 관리범위는 통합관리 콘솔에서 조직별 ✏️수정·👁보기로 지정",
-  "html": "releases/Attendance_Management_Software_v2.23.1.html",
-  "apk": "releases/Attendance_Management_Software_v2.23.1.apk"
+  "note": "근태 변경 칸에서 「퇴」를 고르면 퇴사일(마지막 근무일)을 날짜로 지정 — 다음 날부터 근태 미생성·이후 변경 근태 정리·인원 관리 퇴사일 연동, 「퇴」를 지우면 퇴사 취소 / 「입」도 입사일(첫 근무일) 지정",
+  "html": "releases/Attendance_Management_Software_v2.24.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.24.0.apk"
 }
