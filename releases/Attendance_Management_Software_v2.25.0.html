@@ -1921,7 +1921,7 @@ function siteLedgerSheet(site, sheetName, opts={}){
   const workSym = k => k==='A'||k==='B'||k==='K'||((symMap[k]||{}).t==='work');
   calcs.forEach(({e,r},pi)=>{ const a=assignment(e,y,m), code=r.code; const AR = patOn || r.adjN>0 ? 1 : 0; const NR=4+AR; const last = pi===calcs.length-1;
     const top=rows.length+1;   /* 1-based 첫 줄 */
-    /* 비고: 날짜별 변경 근태 + 메모 (예: 12/9 주간 (류종화 연차대근)) */
+    /* 비고: 날짜별 변경 근태 + 메모 (예: 12/9 주간 (홍*동 연차대근)) */
     const notes=[]; r.days.forEach((dc,i)=>{ if(dc.p.out || !dc.ov) return; const ov=dc.ov;
       const parts=[`${m}/${i+1}`]; if(ov.s) parts.push(symName(ov.s)); if(ov.h) parts.push((ov.h>0?'+':'')+fmtH(ov.h)+'h'); if(ov.adj) parts.push('가감 '+sgn2(ov.adj)+'h');
       if(ov.m) parts.push(`(${String(ov.m).trim()})`); if(parts.length>1) notes.push(parts.join(' ')); });
