@@ -1,7 +1,7 @@
 {
-  "version": "2.26.0",
+  "version": "2.26.1",
   "date": "2026-11-25",
-  "note": "통합 조직 엑셀 — 사업장 근태 시트를 프로그램 화면과 같은 예전 양식으로 되돌리고 「비고」 칸(변경 근태 내용)만 추가, 사업장 시트 이름을 「사업장현황」 NO(경주법주 → 1, 대경대학교 → 2 …)로, 「사업장현황」·「사업장별」 시트는 그대로",
-  "html": "releases/Attendance_Management_Software_v2.26.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.26.0.apk"
+  "note": "근태 요약 줄의 「식대 ○만원」 메모 삭제, 통합 조직 엑셀의 추가근무·기타 청구 시트 이름을 「1-1」·「15-1」처럼, 송원산업 본사 시트를 「14」로",
+  "html": "releases/Attendance_Management_Software_v2.26.1.html",
+  "apk": "releases/Attendance_Management_Software_v2.26.1.apk"
 }
