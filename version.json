@@ -1,7 +1,7 @@
 {
-  "version": "2.24.0",
+  "version": "2.25.0",
   "date": "2026-11-25",
-  "note": "근태 변경 칸에서 「퇴」를 고르면 퇴사일(마지막 근무일)을 날짜로 지정 — 다음 날부터 근태 미생성·이후 변경 근태 정리·인원 관리 퇴사일 연동, 「퇴」를 지우면 퇴사 취소 / 「입」도 입사일(첫 근무일) 지정",
-  "html": "releases/Attendance_Management_Software_v2.24.0.html",
-  "apk": "releases/Attendance_Management_Software_v2.24.0.apk"
+  "note": "통합 조직 엑셀 새 양식 — 맨 앞에 「사업장현황」·「사업장별」 양식 시트 추가, 사업장 근태 시트를 「2612 근태관리 프로그램 디자인 및 서식」과 같은 양식·글꼴(굴림체·돋움)·노란 주말로 출력, 근무조·근로형태·시간은 「요약」 줄로, 변경 근태 메모는 「비고」 칸으로",
+  "html": "releases/Attendance_Management_Software_v2.25.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.25.0.apk"
 }
