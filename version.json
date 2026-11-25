@@ -1,7 +1,7 @@
 {
-  "version": "2.26.1",
+  "version": "2.26.2",
   "date": "2026-11-25",
-  "note": "근태 요약 줄의 「식대 ○만원」 메모 삭제, 통합 조직 엑셀의 추가근무·기타 청구 시트 이름을 「1-1」·「15-1」처럼, 송원산업 본사 시트를 「14」로",
-  "html": "releases/Attendance_Management_Software_v2.26.1.html",
-  "apk": "releases/Attendance_Management_Software_v2.26.1.apk"
+  "note": "첫 인원·근태 생성 때 들어온 2026년 10월 근태 엑셀 메모(예: 10/27 년차)를 요약 줄·엑셀 모든 시트에서 삭제 (그 뒤 직접 고친 메모는 유지)",
+  "html": "releases/Attendance_Management_Software_v2.26.2.html",
+  "apk": "releases/Attendance_Management_Software_v2.26.2.apk"
 }
