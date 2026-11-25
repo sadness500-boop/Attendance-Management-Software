@@ -1,7 +1,7 @@
 {
-  "version": "2.25.1",
+  "version": "2.26.0",
   "date": "2026-11-25",
-  "note": "통합 조직 엑셀 사업장 시트 — 「변경」 줄은 근무 기호만 크게(예: A+6 가감+1 → A, 조정 내용은 비고·시간가감에), 「요약」 줄 노란색 없앰",
-  "html": "releases/Attendance_Management_Software_v2.25.1.html",
-  "apk": "releases/Attendance_Management_Software_v2.25.1.apk"
+  "note": "통합 조직 엑셀 — 사업장 근태 시트를 프로그램 화면과 같은 예전 양식으로 되돌리고 「비고」 칸(변경 근태 내용)만 추가, 사업장 시트 이름을 「사업장현황」 NO(경주법주 → 1, 대경대학교 → 2 …)로, 「사업장현황」·「사업장별」 시트는 그대로",
+  "html": "releases/Attendance_Management_Software_v2.26.0.html",
+  "apk": "releases/Attendance_Management_Software_v2.26.0.apk"
 }
